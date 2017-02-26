@@ -10,7 +10,7 @@ import 'vue-material/dist/vue-material.css'
 Vue.use(VueMaterial)
 Vue.material.registerTheme({
   default: {
-    primary: 'blue',
+    primary: 'cyan',
     accent: 'red'
   },
   green: {
