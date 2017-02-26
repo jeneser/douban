@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "豆瓣电影",
   "author": "jeneser",
-  "private": true,
+  "private": false,
   "scripts": {
     "dev": "node build/dev-server.js",
     "build": "node build/build.js",
@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "vue": "^2.1.10",
+    "vue-material": "^0.7.1",
     "vue-router": "^2.2.0"
   },
   "devDependencies": {
