@@ -12,8 +12,8 @@
         </md-button>
       </div>
     </md-toolbar>
-    <scroller></scroller>
-    <scroller></scroller>
+    <scroller title="影院热映"></scroller>
+    <scroller title="影院热映"></scroller>
   </div>
 </template>
 
