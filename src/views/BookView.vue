@@ -1,7 +1,19 @@
 <template>
   <div class="movie-view has-header">
-    <scroller title="最受关注图书｜虚构类"></scroller>
-    <scroller title="最受关注图书｜非虚构类"></scroller>
+    <scroller title="最受关注图书｜虚构类" type="hasCover"></scroller>
+    <scroller title="最受关注图书｜非虚构类" type="hasCover"></scroller>
+    <scroller title="豆瓣纸书" type="hasCover">
+      <div class="promItem" slot="promItem">
+        <img class="corver" src="../assets/s29172888.jpg" alt="">
+        <div class="content">
+          <span class="price">¥ 68</span>
+          <p class="name">造物</p>
+          <p class="info">改变世界的万物图典，3000幅图里的发明与冒险</p>
+        </div>
+      </div>
+    </scroller>
+    <scroller title="发现好书" type="onlyString"></scroller>
+
     <types></types>
     <download-app></download-app>
   </div>
@@ -24,5 +36,39 @@ export default {
 </script>
 
 <style scoped>
-
+.promItem {
+  overflow: hidden;
+  margin: 16px 18px 0 16px;
+}
+.corver {
+  float: left;
+  width: 100px;
+  margin-right: 15px;
+}
+.content {
+  margin-right: 10xp;
+}
+.name {
+  font-size: 20px;
+  color: #494949;
+  margin: 10px;
+  max-width: 100%;
+  line-height: 22px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  word-wrap: normal;
+}
+.price {
+  float: right;
+  color: #E76648;
+  font-size: 16px;
+  line-height: 22px;
+}
+.info {
+  font-size: 13px;
+  font-weight: 300;
+  line-height: 1.5;
+  color: #9B9B9B;
+}
 </style>

@@ -5,6 +5,7 @@
       <a href="#">更多</a>
     </div>
     <div class="content">
+      <slot name="promItem"></slot>
       <ul class="hasCover" v-if="type === 'hasCover'">
         <li>
           <a href="#">
