@@ -8,20 +8,20 @@ import VueMaterial from 'vue-material'
 import 'vue-material/dist/vue-material.css'
 
 Vue.use(VueMaterial)
-Vue.material.registerTheme({
-  default: {
-    primary: 'cyan',
-    accent: 'red'
-  },
-  green: {
-    primary: 'green',
-    accent: 'pink'
-  },
-  orange: {
-    primary: 'orange',
-    accent: 'green'
-  }
-})
+// Vue.material.registerTheme({
+//   default: {
+//     primary: 'cyan',
+//     accent: 'red'
+//   },
+//   green: {
+//     primary: 'green',
+//     accent: 'pink'
+//   },
+//   orange: {
+//     primary: 'orange',
+//     accent: 'green'
+//   }
+// })
 
 /* eslint-disable no-new */
 new Vue({

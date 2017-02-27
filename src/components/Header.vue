@@ -12,15 +12,16 @@
         </md-button>
       </div>
     </md-toolbar>
-    <download-app></download-app>
+    <scroller></scroller>
+    <scroller></scroller>
   </div>
 </template>
 
 <script>
-import DownloadApp from '../components/DownloadApp.vue'
+import Scroller from '../components/Scroller.vue'
 export default {
   name: 'header',
-  components: { DownloadApp },
+  components: { Scroller },
   data () {
     return {
     }
