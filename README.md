@@ -1,4 +1,4 @@
-# dbmovie
+# douban
 
 > 豆瓣
 
