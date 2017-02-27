@@ -1,5 +1,5 @@
 <template>
-  <div class="movie-view">
+  <div class="movie-view has-header">
     <scroller title="影院热映"></scroller>
     <scroller title="免费在线观影"></scroller>
     <scroller title="新片速递"></scroller>
