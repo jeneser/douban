@@ -1,5 +1,5 @@
 <template>
-  <div class="">
+  <div class="header-bar">
     <md-toolbar md-theme="white">
       <h1 class="md-title">豆瓣</h1>
       <div class="md-button-container">
@@ -12,16 +12,12 @@
         </md-button>
       </div>
     </md-toolbar>
-    <scroller title="影院热映"></scroller>
-    <scroller title="影院热映"></scroller>
   </div>
 </template>
 
 <script>
-import Scroller from '../components/Scroller.vue'
 export default {
-  name: 'header',
-  components: { Scroller },
+  name: 'header-bar',
   data () {
     return {
     }
