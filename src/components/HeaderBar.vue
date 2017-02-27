@@ -6,7 +6,7 @@
         <router-link to="/">
           <md-button style="color: #2384E8">电影</md-button>
         </router-link>
-        <router-link to="/">
+        <router-link to="/book">
           <md-button style="color: #9F7860">图书</md-button>
         </router-link>
         <router-link to="/">
