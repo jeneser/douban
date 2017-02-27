@@ -1,8 +1,10 @@
 <template>
   <div class="movie-view has-header">
-    <scroller title="影院热映"></scroller>
-    <scroller title="免费在线观影"></scroller>
-    <scroller title="新片速递"></scroller>
+    <scroller title="影院热映" type="hasCover"></scroller>
+    <scroller title="免费在线观影" type="hasCover"></scroller>
+    <scroller title="新片速递" type="hasCover"></scroller>
+    <scroller title="发现好电影" type="onlyString"></scroller>
+
     <types></types>
     <download-app></download-app>
   </div>
