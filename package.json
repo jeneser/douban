@@ -1,7 +1,7 @@
 {
-  "name": "dbmovie",
+  "name": "douban",
   "version": "1.0.0",
-  "description": "豆瓣电影",
+  "description": "豆瓣",
   "author": "jeneser",
   "private": false,
   "scripts": {

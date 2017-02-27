@@ -1,6 +1,6 @@
 # dbmovie
 
-> 豆瓣电影
+> 豆瓣
 
 ## Build Setup
 
