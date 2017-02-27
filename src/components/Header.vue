@@ -1,21 +1,26 @@
 <template>
-  <md-toolbar md-theme="white">
-    <h1 class="md-title">豆瓣</h1>
-    <div class="md-button-container">
-      <md-button style="color: #2384E8">电影</md-button>
-      <md-button style="color: #9F7860">图书</md-button>
-      <md-button style="color: #E4A813">广播</md-button>
-      <md-button style="color: #2AB8CC">小组</md-button>
-      <md-button style="color: #42bd56">
-        <md-icon>search</md-icon>
-      </md-button>
-    </div>
-  </md-toolbar>
+  <div class="">
+    <md-toolbar md-theme="white">
+      <h1 class="md-title">豆瓣</h1>
+      <div class="md-button-container">
+        <md-button style="color: #2384E8">电影</md-button>
+        <md-button style="color: #9F7860">图书</md-button>
+        <md-button style="color: #E4A813">广播</md-button>
+        <md-button style="color: #2AB8CC">小组</md-button>
+        <md-button style="color: #42bd56">
+          <md-icon>search</md-icon>
+        </md-button>
+      </div>
+    </md-toolbar>
+    <download-app></download-app>
+  </div>
 </template>
 
 <script>
+import DownloadApp from '../components/DownloadApp.vue'
 export default {
   name: 'header',
+  components: { DownloadApp },
   data () {
     return {
     }
