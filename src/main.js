@@ -4,7 +4,10 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 
+var VueResource = require('vue-resource')
 import VueMaterial from 'vue-material'
+
+Vue.use(VueResource)
 import 'vue-material/dist/vue-material.css'
 
 Vue.use(VueMaterial)
