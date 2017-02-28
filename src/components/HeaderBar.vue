@@ -9,7 +9,7 @@
         <router-link to="/book">
           <md-button style="color: #9F7860">图书</md-button>
         </router-link>
-        <router-link to="/">
+        <router-link to="/status">
           <md-button style="color: #E4A813">广播</md-button>
         </router-link>
         <router-link to="/">
