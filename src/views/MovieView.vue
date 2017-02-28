@@ -3,7 +3,7 @@
     <scroller title="影院热映" type="hasCover" :items="hotMovies"></scroller>
     <scroller title="免费在线观影" type="hasCover" :items="topMovies"></scroller>
     <scroller title="新片速递" type="hasCover" :items="newMovies"></scroller>
-    <scroller title="发现好电影" type="onlyString"></scroller>
+    <scroller title="发现好电影" type="onlyString" :items="tags"></scroller>
 
     <types></types>
     <download-app></download-app>
@@ -32,6 +32,24 @@ export default {
           title: '同时入选IMDB250和豆瓣电影250的电影',
           href: 'https://m.douban.com/doulist/968362/',
           color: '#FFAC2D'
+        },
+        {
+          title: '同时入选IMDB250和豆瓣电影250的电影',
+          href: 'https://m.douban.com/doulist/968362/',
+          color: '#FFAC2D'
+        },
+        {
+          title: '同时入选IMDB250和豆瓣电影250的电影',
+          href: 'https://m.douban.com/doulist/968362/',
+          color: '#FFAC2D'
+        },
+        {
+          line: true
+        },
+        {
+          title: '带你进入不正常的世界',
+          href: 'https://m.douban.com/doulist/16002/',
+          color: '#FF4055'
         }
       ]
     }
