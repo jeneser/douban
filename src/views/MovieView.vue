@@ -15,10 +15,6 @@ import Scroller from '../components/Scroller.vue'
 import Types from '../components/Types.vue'
 import DownloadApp from '../components/DownloadApp.vue'
 
-// function getMovie () {
-//
-// }
-
 export default {
   name: 'movie-view',
   components: { Scroller, Types, DownloadApp },
