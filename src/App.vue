@@ -14,6 +14,10 @@ export default {
 </script>
 
 <style>
+#app {
+  max-width: 568px;
+  margin: 0 auto;
+}
 .has-header {
   margin-top: 64px;
 }

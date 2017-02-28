@@ -7,66 +7,10 @@
     <div class="content">
       <slot name="promItem"></slot>
       <ul class="hasCover" v-if="type === 'hasCover'">
-        <li>
+        <li v-for="item in items">
           <a href="#">
-            <img src="../assets/p2429713841.jpg" alt="">
-            <span class="title">生化危机：终章</span>
-            <div class="rank">
-              <span class="star-full"></span>
-              <span class="star-full"></span>
-              <span class="star-full"></span>
-              <span class="star-gray"></span>
-              <span class="star-gray"></span>
-              <span>6.9</span>
-            </div>
-          </a>
-        </li>
-        <li>
-          <a href="#">
-            <img src="../assets/p2429713841.jpg" alt="">
-            <span class="title">生化危机：终章</span>
-            <div class="rank">
-              <span class="star-full"></span>
-              <span class="star-full"></span>
-              <span class="star-full"></span>
-              <span class="star-gray"></span>
-              <span class="star-gray"></span>
-              <span>6.9</span>
-            </div>
-          </a>
-        </li>
-        <li>
-          <a href="#">
-            <img src="../assets/p2429713841.jpg" alt="">
-            <span class="title">生化危机：终章</span>
-            <div class="rank">
-              <span class="star-full"></span>
-              <span class="star-full"></span>
-              <span class="star-full"></span>
-              <span class="star-gray"></span>
-              <span class="star-gray"></span>
-              <span>6.9</span>
-            </div>
-          </a>
-        </li>
-        <li>
-          <a href="#">
-            <img src="../assets/p2429713841.jpg" alt="">
-            <span class="title">生化危机：终章</span>
-            <div class="rank">
-              <span class="star-full"></span>
-              <span class="star-full"></span>
-              <span class="star-full"></span>
-              <span class="star-gray"></span>
-              <span class="star-gray"></span>
-              <span>6.9</span>
-            </div>
-          </a>
-        </li>
-        <li>
-          <a href="#">
-            <img src="../assets/p2429713841.jpg" alt="">
-            <span class="title">生化危机：终章</span>
+            <img :src="item.images.large" alt="">
+            <span class="title">{{item.title}}</span>
             <div class="rank">
               <span class="star-full"></span>
               <span class="star-full"></span>
@@ -112,7 +56,7 @@
 <script>
   export default {
     name: 'scroller',
-    props: ['title', 'type'],
+    props: ['title', 'type', 'items'],
     data () {
       return {
 
@@ -179,6 +123,9 @@ li {
   }
   li:first-child {
     padding-left: 8px;
+  }
+  img {
+    height: 150px;
   }
   .rank {
     margin-top: 4px;
