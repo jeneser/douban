@@ -24,7 +24,7 @@
       </ul>
       <ul class="onlyString" v-if="type === 'onlyString'">
         <li v-for="item in items" style="border-color: #FFAC2D;">
-          <a :href="item.href" v-if="!item.line" style="color: #FFAC2D;">{{item.title}}</a>
+          <a :href="item.href" v-if="!item.line" :style="{color: item.color}">{{item.title}}</a>
         </li>
       </ul>
     </div>
