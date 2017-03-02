@@ -1,6 +1,6 @@
 <template>
   <div class="status">
-    <my-card></my-card>
+    <card></card>
   </div>
 </template>
 

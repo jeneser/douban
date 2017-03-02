@@ -1,12 +1,12 @@
 <template>
-  <div class="card">
+  <div class="card has-header">
     card
   </div>
 </template>
 
 <script>
 export default {
-  name: 'my-card',
+  name: 'card',
   data () {
     return {
 
