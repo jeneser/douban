@@ -58,6 +58,7 @@ export default {
     padding-right: 18px;
     height: 42px;
     line-height: 42px;
+    font-size: 18px;
     border-top: solid 1px #eee;
     border-right: solid 1px #eee;
   }
@@ -77,11 +78,7 @@ export default {
     margin-top: 1rem;
   }
 }
-
-
 li a {
   color: #42bd56;
 }
-
-
 </style>

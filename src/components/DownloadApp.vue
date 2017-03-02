@@ -57,5 +57,4 @@ strong {
   color: #42bd56;
   text-decoration: none;
 }
-
 </style>

@@ -21,12 +21,14 @@ export default {
 .has-header {
   margin-top: 48px;
 }
-ul, li, a, h2 {
-  margin: 0;
-  padding: 0;
+h2 {
   font-size: 18px;
   font-weight: normal;
   color: #111;
+}
+ul, li, a, h2 {
+  margin: 0;
+  padding: 0;
 }
 li {
   list-style: none;

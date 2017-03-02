@@ -69,6 +69,5 @@ export default {
   .open {
     color: #42bd56;
   }
-
 }
 </style>
