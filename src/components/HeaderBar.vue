@@ -18,7 +18,7 @@
         </router-link>
       </li>
       <li>
-        <router-link style="color: #2AB8CC" to="/">
+        <router-link style="color: #2AB8CC" to="/group">
           小组
         </router-link>
       </li>

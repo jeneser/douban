@@ -3,6 +3,7 @@ import Router from 'vue-router'
 import MovieView from '../views/MovieView.vue'
 import BookView from '../views/BookView.vue'
 import StatusView from '../views/StatusView.vue'
+import GroupView from '../views/GroupView.vue'
 
 Vue.use(Router)
 
@@ -22,6 +23,11 @@ export default new Router({
       path: '/status',
       name: 'StatusView',
       component: StatusView
+    },
+    {
+      path: '/group',
+      name: 'GroupView',
+      component: GroupView
     }
   ]
 })
