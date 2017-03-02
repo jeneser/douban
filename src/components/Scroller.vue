@@ -62,10 +62,6 @@
 
   h2 {
     display: inline-block;
-    margin: 0;
-    font-size: 18px;
-    font-weight: normal;
-    color: #111;
   }
 }
 .content {

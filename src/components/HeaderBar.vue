@@ -73,7 +73,7 @@ export default {
   li {
     display: inline-block;
     font-size: 15px;
-    margin-right: 19px;
+    margin-right: 12px;
   }
 
   .search {

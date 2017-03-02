@@ -36,54 +36,52 @@ export default {
 }
 </script>
 
-<style scoped>
-ul, li {
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
+<style lang="scss" scoped>
 .types {
   margin-top: 10px;
+
+  h2 {
+    height: 26px;
+    line-height: 26px;
+    padding: 0 16px;
+    display: inline-block;
+  }
 }
-.content {
-  margin: 16px 0 15px 16px;
+.type-list {
+  margin: 16px 0 0 16px;
   overflow: hidden;
+
+  li {
+    float: left;
+    box-sizing: border-box;
+    width: 50%;
+    padding-right: 18px;
+    height: 42px;
+    line-height: 42px;
+    border-top: solid 1px #eee;
+    border-right: solid 1px #eee;
+  }
+  li:nth-child(2n) {
+    padding-left: 18px;
+  }
+  span {
+    color: #ccc;
+    float: right;
+    font-weight: bold;
+    display: inline-block;
+    border-right: solid 1px #ccc;
+    border-bottom: solid 1px #ccc;
+    width: 8px;
+    height: 8px;
+    transform: rotate(-45deg);
+    margin-top: 1rem;
+  }
 }
-h2 {
-  height: 26px;
-  line-height: 26px;
-  padding: 0 16px;
-  display: inline-block;
-  margin: 0;
-  font-size: 16px;
-  font-weight: normal;
-  color: #111;
-}
-li:nth-child(2n) {
-  padding-left: 18px;
-}
-li {
-  float: left;
-  width: 50%;
-  padding-right: 18px;
-  height: 42px;
-  line-height: 42px;
-  border-top: solid 1px #eee;
-  border-right: solid 1px #eee;
-}
+
+
 li a {
-  color: #42bd56 !important;
+  color: #42bd56;
 }
-.type-list span {
-  color: #ccc;
-  float: right;
-  font-weight: bold;
-  display: inline-block;
-  border-right: solid 1px #ccc;
-  border-bottom: solid 1px #ccc;
-  width: 8px;
-  height: 8px;
-  transform: rotate(-45deg);
-  margin-top: 1rem;
-}
+
+
 </style>
