@@ -1,5 +1,5 @@
 <template>
-  <div class="card has-header">
+  <div class="card">
     card
   </div>
 </template>
