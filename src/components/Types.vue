@@ -2,7 +2,7 @@
   <div class="types">
     <h2>分类浏览</h2>
     <div class="content">
-      <ul class="type-list md-list">
+      <ul class="type-list">
         <li><a href="/movie/classic">经典<span></span></a></li>
         <li><a href="/movie/underrated">冷门佳片<span></span></a></li>
         <li><a href="/movie/doubantop">豆瓣高分<span></span></a></li>
@@ -58,9 +58,6 @@ h2 {
   font-size: 16px;
   font-weight: normal;
   color: #111;
-}
-.md-list {
-  display: block;
 }
 li:nth-child(2n) {
   padding-left: 18px;
