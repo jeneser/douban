@@ -13,12 +13,22 @@ export default {
 }
 </script>
 
-<style>
+<style lang="scss">
 #app {
   max-width: 568px;
   margin: 0 auto;
 }
 .has-header {
-  margin-top: 64px;
+  margin-top: 48px;
+}
+ul, li, a {
+  margin: 0;
+  padding: 0;
+}
+li {
+  list-style: none;
+}
+a {
+  text-decoration: none;
 }
 </style>
