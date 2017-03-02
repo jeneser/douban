@@ -54,6 +54,7 @@
 
   a {
     float: right;
+    font-size: 18px;
     &:last-child {
       color: #42bd56;
     }
@@ -61,24 +62,15 @@
 
   h2 {
     display: inline-block;
-    margin: 0;
-    font-size: 16px;
-    font-weight: normal;
-    color: #111;
   }
 }
 .content {
   box-sizing: content-box;
-}
-ul {
-  margin: 0;
-  padding: 8px 0;
-}
-li {
-  list-style: none;
-  padding: 0;
-}
 
+  ul {
+    padding: 8px 0;
+  }
+}
 .hasCover {
   overflow-x: auto;
   white-space: nowrap;
@@ -88,6 +80,7 @@ li {
     max-width: 100%;
     margin-top: 10px;
     line-height: 16px;
+    font-size: 18px;
     color: #111;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -97,7 +90,7 @@ li {
   li {
     display: inline-block;
     width: 100px;
-    margin-left: 8px;
+    margin-left: 10px;
   }
   li:first-child {
     padding-left: 8px;
@@ -123,6 +116,7 @@ li {
     background-size: 10px 10px;
   }
   .rank span:last-child {
+    font-size: 14px;
     color: #aaa;
   }
 }
