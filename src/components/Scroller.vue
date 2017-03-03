@@ -8,7 +8,7 @@
       <slot name="promItem"></slot>
       <ul class="hasCover" v-if="type === 'hasCover'">
         <li v-for="item in items">
-          <a href="#">
+          <router-link to="/book">
             <img :src="item.images.large" alt="">
             <span class="title">{{item.title}}</span>
             <div class="rank">
@@ -19,7 +19,7 @@
               <span class="star-gray"></span>
               <span>6.9</span>
             </div>
-          </a>
+          </router-link>
         </li>
       </ul>
       <ul class="onlyString" v-if="type === 'onlyString'">
