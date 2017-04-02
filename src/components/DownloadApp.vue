@@ -24,34 +24,39 @@
 
 <style scoped>
 .download-app {
-  padding: 0 0 20px 0;
-  margin-top: 50px;
-  margin-bottom: 30px;
+  padding: 0 0 2rem 0;
+  margin-top: 5rem;
+  margin-bottom: 3rem;
   text-align: center;
-  font-size: 15px;
+  font-size: 1.5rem;
 }
+
 .info {
-  margin: 0 auto 15px;
+  margin: 0 auto 1.5rem;
   overflow: hidden;
   text-align: left;
-  font-size: 14px;
+  font-size: 1.4rem;
   display: inline-block;
   color: #111;
 }
+
 img {
   float: left;
-  width: 48px;
-  height: 48px;
-  margin-right: 12px;
+  width: 4.8rem;
+  height: 4.8rem;
+  margin-right: 1.2rem;
 }
+
 .info-content {
   overflow: hidden;
 }
+
 strong {
-  font-size: 24px;
+  font-size: 2.4rem;
   font-weight: normal;
-  line-height: 28px;
+  line-height: 2.8rem;
 }
+
 .download-app a:last-child {
   display: block;
   color: #42bd56;

@@ -27,45 +27,50 @@ export default {
 <style lang="scss" scoped>
 .banner {
   position: relative;
-  height: 80px;
+  height: 8rem;
 
   img {
     max-width: 100%;
   }
 }
+
 .banner-bg {
   position: absolute;
 }
+
 .content {
   position: absolute;
-  right: 10px;
-  left: 18px;
+  right: 1rem;
+  left: 1.8rem;
   display: flex;
-  height: 80px;
+  height: 8rem;
   justify-content: space-between;
   align-items: center;
 
   .title {
-    padding-left: 18px;
-    font-size: 14px;
+    padding-left: 1.8rem;
+    font-size: 1.4rem;
     font-weight: normal;
-    line-height: 22px;
+    line-height: 2.2rem;
     color: #2CA532;
   }
+
   .download, .open {
     display: inline-block;
     width: auto;
-    padding: 0 14px;
-    font-size: 13px;
+    padding: 0 1.4rem;
+    font-size: 1.3rem;
     font-weight: bold;
     line-height: 2;
-    border: 1px solid #42bd56;
-    border-radius: 3px;
+    border: 0.1rem solid #42bd56;
+    border-radius: 0.3rem;
   }
+
   .download {
     color: #fff;
     background: #42bd56;
   }
+  
   .open {
     color: #42bd56;
   }

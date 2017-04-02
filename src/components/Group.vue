@@ -62,49 +62,55 @@
 
 <style lang="scss" scoped>
 .group {
-  margin-left: 18px;
-  padding-top: 14px;
+  margin-left: 1.8rem;
+  padding-top: 1.4rem;
 }
+
 .content {
   position: relative;
 
   a {
     display: block;
-    padding: 15px 18px 15px 0;
+    padding: 1.5rem 1.8rem 1.5rem 0;
   }
+
   .group-meta {
     display: flex;
     align-items: center;
   }
+
   .group-name {
     flex: 1;
-    padding: 0 10px;
-    font-size: 18px;
+    padding: 0 1rem;
+    font-size: 1.8rem;
     color: #111;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
   }
+
   .group-member {
     color: #ccc;
-    font-size: 15px;
+    font-size: 1.5rem;
   }
+
   .group-topic {
-    margin-top: 10px;
-    font-size: 15px;
+    margin-top: 1rem;
+    font-size: 1.5rem;
     color: #aaa;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
   }
 }
+
 li::after {
   content: '';
   position: absolute;
   left: 0;
   bottom: 0;
   width: 100%;
-  height: 1px;
+  height: 0.1rem;
   background: #E8E8E8;
 }
 </style>

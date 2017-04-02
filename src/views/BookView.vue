@@ -4,7 +4,7 @@
     <scroller title="最受关注图书｜非虚构类" type="hasCover" :items="reality"></scroller>
     <scroller title="豆瓣纸书" type="hasCover" :items="travel">
       <div class="promItem" slot="promItem">
-        <img class="corver" src="../assets/s29172888.jpg" alt="">
+        <img class="corver" src="../assets/book_zw.jpg" alt="">
         <div class="content">
           <span class="price">¥ 68</span>
           <p class="name">造物</p>
@@ -90,35 +90,40 @@ export default {
 <style scoped>
 .promItem {
   overflow: hidden;
-  margin: 16px 18px 0 16px;
+  margin: 1.6rem 1.8rem 0.8rem 1.6rem;
 }
+
 .corver {
   float: left;
-  width: 100px;
-  margin-right: 15px;
+  width: 10rem;
+  margin-right: 1.5rem;
 }
+
 .content {
-  margin-right: 10xp;
+  margin-right: 1rem;
 }
+
 .name {
-  font-size: 20px;
+  font-size: 2rem;
   color: #494949;
-  margin: 10px;
+  margin: 1rem;
   max-width: 100%;
-  line-height: 22px;
+  line-height: 2.2rem;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
   word-wrap: normal;
 }
+
 .price {
   float: right;
   color: #E76648;
-  font-size: 16px;
-  line-height: 22px;
+  font-size: 1.6rem;
+  line-height: 2.2rem;
 }
+
 .info {
-  font-size: 13px;
+  font-size: 1.3rem;
   font-weight: 300;
   line-height: 1.5;
   color: #9B9B9B;

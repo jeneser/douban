@@ -34,10 +34,10 @@ export default {
 <style lang="scss" scoped>
 .list-link {
   display: block;
-  margin-bottom: 30px;
-  padding: 15px 0;
-  font-size: 16px;
-  line-height: 18px;
+  margin-bottom: 3rem;
+  padding: 1.5rem 0;
+  font-size: 1.6rem;
+  line-height: 1.8rem;
   text-align: center;
   color: #42bd56;
 }
