@@ -1,8 +1,8 @@
 <template>
   <div class="pages-view">
-    <header-bar v-on:showSearch="show"></header-bar>
+    <header-bar @showSearch="open"></header-bar>
     <router-view></router-view>
-    <search-view v-show="search"></search-view>
+    <search-view v-show="search" @closeSearch="close"></search-view>
   </div>
 </template>
 
@@ -19,9 +19,11 @@ export default {
     }
   },
   methods: {
-    show: function () {
-      this.search = 'search'
-      console.log(1)
+    open: function () {
+      this.search = 'open'
+    },
+    close: function () {
+      this.search = ''
     }
   }
 }
