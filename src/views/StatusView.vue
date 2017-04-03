@@ -2,7 +2,7 @@
   <div class="status has-header">
     <banner></banner>
     <div class="content-list">
-      <card v-for="n in 10"></card>
+      <card v-for="item in items" :key="item"></card>
       <a class="list-link" href="#">显示更多广播</a>
     </div>
     <download-app></download-app>
@@ -19,6 +19,7 @@ export default {
   components: { Card, Banner, DownloadApp },
   data () {
     return {
+      items: new Array(10)
     }
   }
 }

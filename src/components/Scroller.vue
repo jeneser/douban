@@ -8,7 +8,7 @@
       <slot name="promItem"></slot>
       <ul class="hasCover" v-if="type === 'hasCover'">
         <li v-for="item in items">
-          <router-link to="/book">
+          <router-link to="subject/1234" append>
             <img :src="item.images.large" alt="">
             <span class="title">{{item.title}}</span>
             <div class="rank">
@@ -154,7 +154,7 @@
     display: block;
     text-align: center;
   }
-  
+
   li:empty {
     width: 100%;
     display: block;

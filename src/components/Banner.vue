@@ -1,9 +1,12 @@
 <template>
   <div class="banner">
-    <div class="banner-bg">
+    <div class="banner-bg" v-if="!isAd">
       <img src="../assets/promotion_bg.jpg" alt="">
     </div>
-    <div class="content">
+    <div class="banner-bg ad" v-if="isAd">
+      <img :src="adImg" alt="ad">
+    </div>
+    <div class="content" v-if="noContent">
       <span class="title">{{title}}</span>
       <div class="button-wrapper">
         <span class="download">极速下载</span>
@@ -16,9 +19,23 @@
 <script>
 export default {
   name: 'banner',
+  props: {
+    title: {
+      type: String,
+      default: '打开App, 回复话题'
+    },
+    noContent: {
+      default: true
+    },
+    isAd: {
+      default: false
+    },
+    adImg: {
+      default: ''
+    }
+  },
   data () {
     return {
-      title: '打开App, 回复广播'
     }
   }
 }
@@ -70,7 +87,7 @@ export default {
     color: #fff;
     background: #42bd56;
   }
-  
+
   .open {
     color: #42bd56;
   }

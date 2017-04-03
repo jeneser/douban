@@ -6,6 +6,7 @@ import MovieView from '../views/MovieView.vue'
 import BookView from '../views/BookView.vue'
 import StatusView from '../views/StatusView.vue'
 import GroupView from '../views/GroupView.vue'
+import SubjectView from '../views/SubjectView.vue'
 
 Vue.use(Router)
 
@@ -45,6 +46,14 @@ export default new Router({
           component: GroupView
         }
       ]
+    },
+    {
+      path: '/pages/:classify/subject/:id',
+      name: 'SubjectView',
+      components: {
+        default: PagesView,
+        subject: SubjectView
+      }
     }
   ]
 })
