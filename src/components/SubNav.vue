@@ -1,12 +1,31 @@
 <template>
   <div class="sub-nav">
-    <div class="nav-item">
-      <a href="#">注册帐号</a><!-- replace blank
-      --><a href="#">登录豆瓣</a>
+    <div class="navBottom" v-if="navBottom">
+      <div class="nav-item">
+        <a href="#">注册帐号</a><!-- replace blank
+        --><a href="#">登录豆瓣</a>
+      </div>
+      <div class="nav-item">
+        <a href="#">使用桌面版</a><!-- replace blank
+        --><a href="#">使用豆瓣App</a>
+      </div>
     </div>
-    <div class="nav-item">
-      <a href="#">使用桌面版</a><!-- replace blank
-      --><a href="#">使用豆瓣App</a>
+
+    <div class="quickNav" v-if="quickNav">
+      <ul class="quick-nav">
+        <li>
+          <a href="#">影院热映</a>
+        </li>
+        <li>
+          <a href="#">欧美新碟榜</a>
+        </li>
+        <li>
+          <a href="#">白先勇细说红楼梦</a>
+        </li>
+        <li>
+          <a href="#">使用豆瓣App</a>
+        </li>
+      </ul>
     </div>
   </div>
 </template>
@@ -14,6 +33,7 @@
 <script>
 export default {
   name: 'sub-nav',
+  props: ['navBottom', 'quickNav'],
   data () {
     return {
     }
@@ -22,7 +42,7 @@ export default {
 </script>
 
 <style lang='scss' scoped>
-.sub-nav {
+.navBottom {
   width: 100%;
   border-bottom: 0.1rem solid #f3f3f3;
 
@@ -45,4 +65,35 @@ export default {
     }
   }
 }
+.quickNav {
+  ul {
+    overflow: hidden;
+    margin: 2rem 0 0 0;
+    padding-top: 0.6rem;
+
+    li {
+      float: left;
+      width: 50%;
+      padding: 0.3rem;
+      box-sizing: border-box;
+      font-size: 1.5rem;
+    }
+
+    a {
+      display: block;
+      max-width: 100%;
+      padding: 1.2rem 0;
+      line-height: 2rem;
+      text-align: center;
+      background-color: #f6f6f6;
+      color: #494949;
+      border-radius: 0.2rem;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      word-wrap: normal;
+    }
+  }
+}
+
 </style>

@@ -68,7 +68,7 @@
         </div>
       </li>
     </ul>
-    <sub-nav></sub-nav>
+    <sub-nav navBottom="ok"></sub-nav>
   </div>
 </template>
 
