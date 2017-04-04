@@ -68,23 +68,16 @@
         </div>
       </li>
     </ul>
-
-    <div class="sub-nav">
-      <div class="nav-item">
-        <a href="#">注册帐号</a><!-- replace blank
-        --><a href="#">登录豆瓣</a>
-      </div>
-      <div class="nav-item">
-        <a href="#">使用桌面版</a><!-- replace blank
-        --><a href="#">使用豆瓣App</a>
-      </div>
-    </div>
+    <sub-nav></sub-nav>
   </div>
 </template>
 
 <script>
+import SubNav from '../components/SubNav'
+
 export default {
   name: 'search-view',
+  components: { SubNav },
   data () {
     return {
     }
@@ -171,30 +164,6 @@ ul {
     height: 1.7rem;
     font-size: 1.2rem;
     letter-spacing: 0.1rem;
-  }
-}
-
-.sub-nav {
-  width: 100%;
-  border-bottom: 0.1rem solid #f3f3f3;
-
-  .nav-item {
-    border-top: 0.1rem solid #f3f3f3;
-    padding: 1.3rem 0;
-    text-align: center;
-  }
-
-  a {
-    width: 50%;
-    display: inline-block;
-    margin: 0 auto;
-    box-sizing: border-box;
-    font-size: 1.5rem;
-    color: #42bd56;
-
-    &:first-child {
-      border-right: 0.1rem solid #e5e5e5;
-    }
   }
 }
 

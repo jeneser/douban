@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 
 import PagesView from '../views/PagesView.vue'
+import HomeView from '../views/HomeView.vue'
 import MovieView from '../views/MovieView.vue'
 import BookView from '../views/BookView.vue'
 import StatusView from '../views/StatusView.vue'
@@ -23,7 +24,12 @@ export default new Router({
       children: [
         {
           path: '',
-          redirect: '/pages/movie'
+          redirect: '/pages/home'
+        },
+        {
+          path: 'home',
+          name: 'HomeView',
+          component: HomeView
         },
         {
           path: 'movie',
