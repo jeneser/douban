@@ -28,7 +28,7 @@ html {
 }
 
 h2 {
-  font-size: 1.8rem;
+  font-size: 1.68rem;
   font-weight: normal;
   color: #111;
 }
