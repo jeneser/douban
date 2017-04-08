@@ -1,30 +1,39 @@
 <template>
   <div class="tags">
-    <h2 v-if="noTitle">查看更多豆瓣高分电影电视剧</h2>
-    <ul>
-      <li>
-        <a href="#">影展</a>
-      </li>
-      <li>
-        <a href="#">观影</a>
-      </li>
-      <li>
-        <a href="#">奥斯卡</a>
-      </li>
-      <li>
-        <a href="#">戛纳电影节</a>
-      </li>
-      <li>
-        <a href="#">北京电影节</a>
-      </li>
-    </ul>
+    <template v-if="custom">
+      <h2 v-if="noTitle">查看更多豆瓣高分电影电视剧</h2>
+      <ul>
+        <li>
+          <a href="#">影展</a>
+        </li>
+        <li>
+          <a href="#">观影</a>
+        </li>
+        <li>
+          <a href="#">奥斯卡</a>
+        </li>
+        <li>
+          <a href="#">戛纳电影节</a>
+        </li>
+        <li>
+          <a href="#">北京电影节</a>
+        </li>
+      </ul>
+    </template>
+    <template v-if="items">
+      <ul>
+        <li v-for="item in items">
+          <a href="#">{{item}}</a>
+        </li>
+      </ul>
+    </template>
   </div>
 </template>
 
 <script>
 export default {
   name: 'tags',
-  props: ['noTitle'],
+  props: ['custom', 'items', 'noTitle'],
   data () {
     return {
     }

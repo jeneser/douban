@@ -18,7 +18,8 @@ export default {
   data () {
     return {
       events: [],
-      temp: []
+      temp: [],
+      skip: 5
     }
   },
   methods: {
@@ -30,9 +31,11 @@ export default {
       }, 1000)
     },
     loadMore () {
-      this.$http.jsonp('https://api.douban.com/v2/event/list?loc=108288&start=5&count=5')
+      this.$http.jsonp('https://api.douban.com/v2/event/list?loc=108288&start=' +
+                        this.skip + '&count=5')
                 .then(res => {
                   console.log(res.body.events)
+                  this.skip *= 2
                   this.temp = res.body.events
                 })
     }

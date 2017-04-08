@@ -3,50 +3,48 @@
     <banner :title="bannerTitle"></banner>
     <div class="info">
       <h2>
-        2017第七届北京国际电影节
-        <span class="badge">官方售票</span>
+        {{item.title}}
+        <span class="badge">{{item.loc_name}}</span>
       </h2>
       <div class="poster">
-        <img src="https://img3.doubanio.com\/view\/event_poster\/hlarge\/public\/8bba48432726c80.jpg" alt="">
+        <img :src="item.image_hlarge" alt="">
       </div>
       <div class="detail">
         <span class="pl">时间:&nbsp;&nbsp;</span>
         <ul>
-          <li class="calendar-str-item">2017-04-08 00:00:00</li>
-          <li class="calendar-str-item">2017-04-23 23:30:00</li>
+          <li class="calendar-str-item">{{item.begin_time}}</li>
+          <li class="calendar-str-item">{{item.end_time}}</li>
         </ul>
       </div>
       <div class="detail">
         <span class="pl">地点:&nbsp;&nbsp;</span>
         <ul>
-          <li class="calendar-str-item">北京 海淀区 全北京30家商业影院、艺术影院和校园影院</li>
+          <li class="calendar-str-item">{{item.address}}</li>
         </ul>
       </div>
       <div class="detail">
         <span class="pl">费用:&nbsp;&nbsp;</span>
         <ul>
-          <li class="calendar-str-item">免费</li>
+          <li class="calendar-str-item">{{item.fee_str}}</li>
         </ul>
       </div>
       <div class="detail">
         <span class="pl">类型:&nbsp;&nbsp;</span>
         <ul>
-          <li class="calendar-str-item">影展</li>
+          <li class="calendar-str-item">{{item.category_name}}</li>
         </ul>
       </div>
       <div class="detail">
-        <span class="pl">主办方:&nbsp;&nbsp;</span>
+        <span class="pl">起始时间:&nbsp;&nbsp;</span>
         <ul>
-          <li class="calendar-str-item">北京国际电影节</li>
+          <li class="calendar-str-item">{{item.owner | getName}}</li>
         </ul>
       </div>
-      <tags noTitle></tags>
+      <tags :items="item.tags | toArray"></tags>
 
       <div class="describe">
         <h2>活动详情</h2>
-        <div class="content">
-          格热戈日•亚日那，1968年生于波兰西部城市霍茹夫，他是当代波兰最炙手可热的戏剧导演之一。他的作品为波兰戏剧的突破性发展做出了巨大贡献。亚日那毕业于克拉科夫雅盖隆大学哲学院，并在克拉科夫卢德维克•索尔斯基国立戏剧学院学习导演。1998年，他成为华沙多样剧场TR Warszawa（前身是Teatr Rozmaitości）的艺术总监，多样剧场是波兰最具创新性的戏剧团体之一，从2006到2013年亚日那还曾担任还剧院总经理一职。
-        </div>
+        <div class="content" v-html="content"></div>
       </div>
     </div>
     <download-app></download-app>
@@ -64,8 +62,36 @@ export default {
   components: { Banner, Tags, DownloadApp },
   data () {
     return {
-      bannerTitle: '每天看点好内容'
+      bannerTitle: '每天看点好内容',
+      item: []
     }
+  },
+  filters: {
+    toArray (value) {
+      if (!value) return ''
+      value = value.toString()
+      return value.split(',')
+    },
+    getName (value) {
+      if (!value) return '豆瓣'
+      return value.name
+    }
+  },
+  computed: {
+    content: function () {
+      // Careful XSS
+      // Remove copyright imgs
+      if (!this.item.content) return ''
+      return this.item.content.replace(/<img.+?>/ig, '')
+    }
+  },
+  beforeMount () {
+    const id = this.$route.params.id
+    this.$http.jsonp('https://api.douban.com/v2/event/' + id)
+              .then(res => {
+                console.log(res.body)
+                this.item = res.body
+              })
   }
 }
 </script>
@@ -130,6 +156,7 @@ export default {
   }
 
   .content {
+    overflow: hidden;
     font-size: 1.4rem;
   }
 }
