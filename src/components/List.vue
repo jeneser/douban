@@ -1,57 +1,35 @@
 <template>
   <div class="list">
-    <a class="item" href="/pages/detail/123">
-      <div class="content">
-        <img src="https://qnmob2.doubanio.com/img/files/file-1491015332.jpg?imageView2/2/q/80/w/330/h/330/format/jpg" alt="">
-        <h3>当我读天书时，我想些什么</h3>
-        <p>这本书一翻开，立刻被消毒了，它是文学界的84消毒液。</p>
-      </div>
-      <div class="author">
-        by<span class="name">耳东某</span>
-        <span class="label">来自栏目 广播精选</span>
-      </div>
-    </a>
-    <a class="item" href="#">
-      <div class="content">
-        <img src="https://qnmob2.doubanio.com/img/files/file-1491015332.jpg?imageView2/2/q/80/w/330/h/330/format/jpg" alt="">
-        <h3>当我读天书时，我想些什么</h3>
-        <p>这本书一翻开，立刻被消毒了，它是文学界的84消毒液。</p>
-      </div>
-      <div class="author">
-        by<span class="name">耳东某</span>
-        <span class="label">来自栏目 广播精选</span>
-      </div>
-    </a>
-    <a class="item" href="#">
-      <div class="content">
-        <img src="https://qnmob2.doubanio.com/img/files/file-1491015332.jpg?imageView2/2/q/80/w/330/h/330/format/jpg" alt="">
-        <h3>当我读天书时，我想些什么</h3>
-        <p>这本书一翻开，立刻被消毒了，它是文学界的84消毒液。</p>
-      </div>
-      <div class="author">
-        by<span class="name">耳东某</span>
-        <span class="label">来自栏目 广播精选</span>
-      </div>
-    </a>
-    <a class="item" href="#">
-      <div class="content">
-        <img src="https://qnmob2.doubanio.com/img/files/file-1491015332.jpg?imageView2/2/q/80/w/330/h/330/format/jpg" alt="">
-        <h3>当我读天书时，我想些什么</h3>
-        <p>这本书一翻开，立刻被消毒了，它是文学界的84消毒液。</p>
-      </div>
-      <div class="author">
-        by<span class="name">耳东某</span>
-        <span class="label">来自栏目 广播精选</span>
-      </div>
-    </a>
+    <template v-for="item in items">
+      <a class="item" :href="'/pages/detail/' + item.id">
+        <div class="content">
+          <img :src="item.image_hlarge" alt="cover">
+          <h3>{{item.title}}</h3>
+          <p>{{item.content | subStr}}</p>
+        </div>
+        <div class="author">
+          <span class="name">{{item.category_name}}</span>
+          <span class="label" v-if="item.subcategory_name">
+            本活动来自栏目 {{item.subcategory_name}}
+          </span>
+        </div>
+      </a>
+    </template>
   </div>
 </template>
 
 <script>
 export default {
   name: 'list',
+  props: ['items'],
   data () {
     return {
+    }
+  },
+  filters: {
+    subStr: function (value) {
+      value.replace(/<.+>|\s/, '')
+      return value.slice(0, 30)
     }
   }
 }

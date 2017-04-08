@@ -12,6 +12,7 @@
   "dependencies": {
     "normalize.css": "^5.0.0",
     "vue": "^2.1.10",
+    "vue-infinite-loading": "^2.0.4",
     "vue-resource": "^1.2.0",
     "vue-router": "^2.2.0",
     "vuex": "^2.2.1"

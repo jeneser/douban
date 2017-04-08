@@ -19,7 +19,7 @@ html {
 }
 
 #app {
-  max-width: 56.8rem;
+  max-width: 41.2rem;
   margin: 0 auto;
 }
 

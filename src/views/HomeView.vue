@@ -1,7 +1,7 @@
 <template>
   <div class="home-view has-header">
     <sub-nav quickNav="ok"></sub-nav>
-    <list></list>
+    <list :items="events"></list>
 
   </div>
 </template>
@@ -15,7 +15,15 @@ export default {
   components: { SubNav, List },
   data () {
     return {
+      events: []
     }
+  },
+  beforeMount () {
+    this.$http.jsonp('https://api.douban.com/v2/event/list?loc=108288&count=5')
+              .then(res => {
+                console.log(res.body.events)
+                this.events = res.body.events
+              })
   }
 }
 </script>
