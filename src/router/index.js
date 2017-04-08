@@ -8,6 +8,7 @@ import BookView from '../views/BookView.vue'
 import StatusView from '../views/StatusView.vue'
 import GroupView from '../views/GroupView.vue'
 import SubjectView from '../views/SubjectView.vue'
+import DetailView from '../views/DetailView.vue'
 
 Vue.use(Router)
 
@@ -50,6 +51,11 @@ export default new Router({
           path: 'group',
           name: 'GroupView',
           component: GroupView
+        },
+        {
+          path: 'detail/:id',
+          name: 'DetailView',
+          component: DetailView
         }
       ]
     },

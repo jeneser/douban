@@ -40,35 +40,7 @@
           <a class="expand" href="javascript:;">(展开)</a>
         </p>
       </div>
-      <div class="tags">
-        <h2>查看更多豆瓣高分电影电视剧</h2>
-        <ul>
-          <li>
-            <a href="#">悬疑</a>
-          </li>
-          <li>
-            <a href="#">推理</a>
-          </li>
-          <li>
-            <a href="#">小说改编</a>
-          </li>
-          <li>
-            <a href="#">犯罪</a>
-          </li>
-          <li>
-            <a href="#">国产</a>
-          </li>
-          <li>
-            <a href="#">2017</a>
-          </li>
-          <li>
-            <a href="#">中国大陆</a>
-          </li>
-          <li>
-            <a href="#">剧情</a>
-          </li>
-        </ul>
-      </div>
+      <tags noTitle="false"></tags>
       <div class="subject-pics">
         <h2>嫌疑人X的献身的预告片(8)和图片(282)</h2>
         <ul>
@@ -137,11 +109,12 @@
 import Banner from '../components/Banner'
 import Card from '../components/Card'
 import Scroller from '../components/Scroller'
+import Tags from '../components/Tags'
 import DownloadApp from '../components/DownloadApp'
 
 export default {
   name: 'subject-view',
-  components: { Banner, Card, Scroller, DownloadApp },
+  components: { Banner, Card, Scroller, Tags, DownloadApp },
   data () {
     return {
       bannerTitle: '聊聊你的观影感受',
@@ -257,25 +230,6 @@ export default {
   a {
     float: right;
     color: #42bd56;
-  }
-}
-
-.tags {
-  li {
-    display: inline-block;
-    margin: 1rem 1rem 0 0;
-    font-size: 1.5rem;
-  }
-
-  a {
-    display: block;
-    padding: 0 1.2rem;
-    line-height: 2.8rem;
-    font-size: 1.5rem;
-    border-radius: 2.8rem;
-    text-align: center;
-    color: #494949;
-    background: #f5f5f5;
   }
 }
 
