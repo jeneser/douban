@@ -2,11 +2,11 @@
   <div class="subject-view has-header">
     <banner :title="bannerTitle"></banner>
     <div class="subject-card">
-      <h1 class="title">嫌疑人X的献身</h1>
+      <h1 class="title">{{subject.title}}</h1>
       <div class="subject-info">
         <div class="right">
           <a href="#">
-            <img src="https://img3.doubanio.com/view/movie_poster_cover/lpst/public/p2448676053.webp" alt="">
+            <img :src="subject.images.large" alt="cover">
           </a>
         </div>
         <div class="left">
@@ -21,9 +21,7 @@
             <strong>6.6</strong>
             <span>42210人评价</span>
           </p>
-          <p class="meta">
-            112分钟 / 犯罪 / 悬疑 / 苏有朋(导演) / 王凯 / 张鲁一 / 林心如 / 叶祖新 / 丁冠森 / 邓恩熙 / 成泰燊 / 赵阳 / 侯明昊 / 焉栩嘉 / 2017-03-31(中国大陆) 上映
-          </p>
+          <p class="meta">{{subject.summary}}</p>
           <a href="#" class="open-app">
             用App查看影人资料
           </a>
@@ -100,8 +98,6 @@
     </div>
     <scroller title="推荐的豆列" type="onlyString" :items="tags"></scroller>
     <download-app></download-app>
-
-
   </div>
 </template>
 
@@ -118,6 +114,7 @@ export default {
   data () {
     return {
       bannerTitle: '聊聊你的观影感受',
+      subject: {},
       items: new Array(5),
       adImgUrl: 'http://img.hb.aicdn.com/c1dd2a72fa6412bd455868be68ca402cf9f94b84e688-WMTPtp_fw658',
       tags: [
@@ -146,6 +143,16 @@ export default {
         }
       ]
     }
+  },
+  beforeMount () {
+    const id = this.$route.params.id
+    const classify = this.$route.params.classify
+    this.$http.jsonp('https://api.douban.com/v2/' + classify +
+                     '/subject/' + id)
+              .then(res => {
+                console.log(res.body)
+                this.subject = res.body
+              })
   }
 }
 </script>

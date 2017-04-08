@@ -10,34 +10,34 @@
         <img :src="item.image_hlarge" alt="">
       </div>
       <div class="detail">
-        <span class="pl">时间:&nbsp;&nbsp;</span>
+        <span>时间:&nbsp;&nbsp;</span>
         <ul>
-          <li class="calendar-str-item">{{item.begin_time}}</li>
-          <li class="calendar-str-item">{{item.end_time}}</li>
+          <li>{{item.begin_time}}</li>
+          <li>{{item.end_time}}</li>
         </ul>
       </div>
       <div class="detail">
-        <span class="pl">地点:&nbsp;&nbsp;</span>
+        <span>地点:&nbsp;&nbsp;</span>
         <ul>
-          <li class="calendar-str-item">{{item.address}}</li>
+          <li>{{item.address}}</li>
         </ul>
       </div>
       <div class="detail">
-        <span class="pl">费用:&nbsp;&nbsp;</span>
+        <span>费用:&nbsp;&nbsp;</span>
         <ul>
-          <li class="calendar-str-item">{{item.fee_str}}</li>
+          <li>{{item.fee_str}}</li>
         </ul>
       </div>
       <div class="detail">
-        <span class="pl">类型:&nbsp;&nbsp;</span>
+        <span>类型:&nbsp;&nbsp;</span>
         <ul>
-          <li class="calendar-str-item">{{item.category_name}}</li>
+          <li>{{item.category_name}}</li>
         </ul>
       </div>
       <div class="detail">
-        <span class="pl">起始时间:&nbsp;&nbsp;</span>
+        <span>起始时间:&nbsp;&nbsp;</span>
         <ul>
-          <li class="calendar-str-item">{{item.owner | getName}}</li>
+          <li>{{item.owner | getName}}</li>
         </ul>
       </div>
       <tags :items="item.tags | toArray"></tags>
@@ -63,7 +63,7 @@ export default {
   data () {
     return {
       bannerTitle: '每天看点好内容',
-      item: []
+      item: {}
     }
   },
   filters: {
