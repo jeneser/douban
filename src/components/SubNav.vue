@@ -2,11 +2,11 @@
   <div class="sub-nav">
     <div class="navBottom" v-if="navBottom">
       <div class="nav-item">
-        <a href="#">注册帐号</a><!-- replace blank
-        --><a href="#">登录豆瓣</a>
+        <a href="https://accounts.douban.com/register">注册帐号</a><!-- replace blank
+        --><a href="https://accounts.douban.com/login">登录豆瓣</a>
       </div>
       <div class="nav-item">
-        <a href="#">使用桌面版</a><!-- replace blank
+        <a href="https://movie.douban.com/">使用桌面版</a><!-- replace blank
         --><a href="#">使用豆瓣App</a>
       </div>
     </div>
@@ -14,13 +14,13 @@
     <div class="quickNav" v-if="quickNav">
       <ul class="quick-nav">
         <li>
-          <a href="#">影院热映</a>
+          <a href="/pages/movie">影院热映</a>
         </li>
         <li>
-          <a href="#">欧美新碟榜</a>
+          <a href="/pages/status">欧美新碟榜</a>
         </li>
         <li>
-          <a href="#">白先勇细说红楼梦</a>
+          <a href="/pages/book">白先勇细说红楼梦</a>
         </li>
         <li>
           <a href="#">使用豆瓣App</a>
