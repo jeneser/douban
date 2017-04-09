@@ -21,10 +21,8 @@
             <strong>6.6</strong>
             <span>42210人评价</span>
           </p>
-          <p class="meta">{{subject.summary}}</p>
-          <a href="#" class="open-app">
-            用App查看影人资料
-          </a>
+          <p class="meta">{{movieMeta}}</p>
+          <a href="#" class="open-app">用App查看影人资料</a>
         </div>
       </div>
       <div class="subject-mark">
@@ -32,36 +30,38 @@
         <a href="javascript:;">看过</a>
       </div>
       <div class="subject-intro">
-        <h2>嫌疑人X的献身的剧情简介</h2>
+        <h2>{{subject.title}}的剧情简介</h2>
         <p>
-          在刑警学院任职的物理天才唐川（王凯 饰）与中学教师石泓（张鲁一 饰）年少相识，因彼此对数学的共同兴趣而惺惺相惜，多年后唐川在调查一桩杀人案时， 身为石泓邻居的陈婧（林心如 饰）被列入警方的“嫌疑人”之中，石泓与唐川因此再度重逢，而唐川却在调查中发现了更大的秘密……
-          <a class="expand" href="javascript:;">(展开)</a>
+          {{summary}}……
+          <a class="expand" href="javascript:;">
+            (展开)
+          </a>
         </p>
       </div>
       <tags noTitle="false"></tags>
       <div class="subject-pics">
-        <h2>嫌疑人X的献身的预告片(8)和图片(282)</h2>
+        <h2>{{subject.title}}的图片</h2>
         <ul>
           <li class="pic">
             <a href="#">
-              <img src="https://img3.doubanio.com/view/movie_poster_cover/lpst/public/p2448676053.webp" alt="">
+              <img :src="subject.images.large" alt="poster">
             </a>
           </li>
           <li class="pic">
             <a href="#">
-              <img src="https://img3.doubanio.com/view/movie_poster_cover/lpst/public/p2448676053.webp" alt="">
+              <img :src="subject.images.large" alt="poster">
             </a>
           </li>
           <li class="pic">
             <a href="#">
-              <img src="https://img3.doubanio.com/view/movie_poster_cover/lpst/public/p2448676053.webp" alt="">
+              <img :src="subject.images.large" alt="poster">
             </a>
           </li>
         </ul>
       </div>
     </div>
     <div class="subject-comments">
-      <h2>嫌疑人X的献身的短评(27987)</h2>
+      <h2>{{subject.title}}的短评</h2>
       <div class="content-list">
         <card v-for="item in items" :key="item"></card>
         <a class="list-link" href="#">显示更多评论</a>
@@ -71,7 +71,7 @@
       <banner isAd="true" :adImg="adImgUrl" noContent></banner>
     </div>
     <div class="subject-question">
-      <h2>关于嫌疑人X的献身的问答(28)</h2>
+      <h2>关于{{subject.title}}的问答(28)</h2>
       <ul class="list">
         <li><a href="#">
           <h3>大家为什么对国产片这么苛刻？</h3>
@@ -115,6 +115,7 @@ export default {
     return {
       bannerTitle: '聊聊你的观影感受',
       subject: {},
+      isExpand: 0,
       items: new Array(5),
       adImgUrl: 'http://img.hb.aicdn.com/c1dd2a72fa6412bd455868be68ca402cf9f94b84e688-WMTPtp_fw658',
       tags: [
@@ -142,6 +143,17 @@ export default {
           color: '#FFC46C'
         }
       ]
+    }
+  },
+  computed: {
+    movieMeta: function () {
+      return this.subject.year + this.subject.genres.join(' / ') +
+             this.subject.casts.map(item => item.name).join(' / ') +
+             this.subject.directors.map(item => item.name).join(' / ') +
+             ' / ' + this.subject.countries.join(' / ')
+    },
+    summary: function () {
+      return this.subject.summary.slice(0, 130)
     }
   },
   beforeMount () {
