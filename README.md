@@ -1,6 +1,6 @@
 # douban
 
-> 豆瓣
+> Awesome douban DEMO created with Vue2.x + Vuex + Vue-router
 
 ## Build Setup
 
