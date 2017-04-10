@@ -6,7 +6,7 @@
       <div class="subject-info">
         <div class="right">
           <a href="#">
-            <img :src="subject.images.large" alt="cover">
+            <img :src="subject.images | isExist" alt="cover">
           </a>
         </div>
         <div class="left">
@@ -32,8 +32,8 @@
       <div class="subject-intro">
         <h2>{{subject.title}}的剧情简介</h2>
         <p>
-          {{summary}}……
-          <a class="expand" href="javascript:;">
+          {{isExpand ? summary : subject.summary}}……
+          <a href="javascript:;" v-show="isExpand" v-on:click="expand">
             (展开)
           </a>
         </p>
@@ -44,17 +44,17 @@
         <ul>
           <li class="pic">
             <a href="#">
-              <img :src="subject.images.large" alt="poster">
+              <img :src="subject.images | isExist" alt="poster">
             </a>
           </li>
           <li class="pic">
             <a href="#">
-              <img :src="subject.images.large" alt="poster">
+              <img :src="subject.images | isExist" alt="poster">
             </a>
           </li>
           <li class="pic">
             <a href="#">
-              <img :src="subject.images.large" alt="poster">
+              <img :src="subject.images | isExist" alt="poster">
             </a>
           </li>
         </ul>
@@ -115,7 +115,7 @@ export default {
     return {
       bannerTitle: '聊聊你的观影感受',
       subject: {},
-      isExpand: 0,
+      isExpand: true,
       items: new Array(5),
       adImgUrl: 'http://img.hb.aicdn.com/c1dd2a72fa6412bd455868be68ca402cf9f94b84e688-WMTPtp_fw658',
       tags: [
@@ -147,13 +147,26 @@ export default {
   },
   computed: {
     movieMeta: function () {
+      if (!this.subject.genres) return ''
       return this.subject.year + this.subject.genres.join(' / ') +
              this.subject.casts.map(item => item.name).join(' / ') +
              this.subject.directors.map(item => item.name).join(' / ') +
              ' / ' + this.subject.countries.join(' / ')
     },
     summary: function () {
-      return this.subject.summary.slice(0, 130)
+      if (!this.subject.summary) return ''
+      return this.subject.summary.slice(0, 120)
+    }
+  },
+  methods: {
+    expand: function (event) {
+      this.isExpand = false
+    }
+  },
+  filters: {
+    isExist: function (value) {
+      if (!value) return ''
+      return value.large
     }
   },
   beforeMount () {
@@ -240,14 +253,14 @@ export default {
 
 .subject-intro {
   p {
-    height: 10rem;
+    // height: 10rem;
     font-size: 1.5rem;
     color: #494949;
-    overflow: hidden;
+    // overflow: hidden;
   }
 
   a {
-    float: right;
+    // float: right;
     color: #42bd56;
   }
 }
