@@ -6,21 +6,11 @@
       <div class="subject-info">
         <div class="right">
           <a href="#">
-            <img :src="subject.images | isExist" alt="cover">
+            <img :src="subject.images | isImg" alt="cover">
           </a>
         </div>
         <div class="left">
-          <p class="rating">
-            <span class="rating-stars" data-rating="66.0">
-              <span class="rating-star rating-star-medium-full"></span>
-              <span class="rating-star rating-star-medium-full"></span>
-              <span class="rating-star rating-star-medium-full"></span>
-              <span class="rating-star rating-star-medium-half"></span>
-              <span class="rating-star rating-star-medium-gray"></span>
-            </span>
-            <strong>6.6</strong>
-            <span>42210人评价</span>
-          </p>
+          <rating :average="subject.rating | isExist" :ratingsCount="subject.ratings_count"></rating>
           <p class="meta">{{movieMeta}}</p>
           <a href="#" class="open-app">用App查看影人资料</a>
         </div>
@@ -44,17 +34,17 @@
         <ul>
           <li class="pic">
             <a href="#">
-              <img :src="subject.images | isExist" alt="poster">
+              <img :src="subject.images | isImg" alt="poster">
             </a>
           </li>
           <li class="pic">
             <a href="#">
-              <img :src="subject.images | isExist" alt="poster">
+              <img :src="subject.images | isImg" alt="poster">
             </a>
           </li>
           <li class="pic">
             <a href="#">
-              <img :src="subject.images | isExist" alt="poster">
+              <img :src="subject.images | isImg" alt="poster">
             </a>
           </li>
         </ul>
@@ -103,6 +93,7 @@
 
 <script>
 import Banner from '../components/Banner'
+import Rating from '../components/Rating'
 import Card from '../components/Card'
 import Scroller from '../components/Scroller'
 import Tags from '../components/Tags'
@@ -110,7 +101,7 @@ import DownloadApp from '../components/DownloadApp'
 
 export default {
   name: 'subject-view',
-  components: { Banner, Card, Scroller, Tags, DownloadApp },
+  components: { Banner, Rating, Card, Scroller, Tags, DownloadApp },
   data () {
     return {
       bannerTitle: '聊聊你的观影感受',
@@ -164,9 +155,13 @@ export default {
     }
   },
   filters: {
-    isExist: function (value) {
+    isImg: function (value) {
       if (!value) return ''
       return value.large
+    },
+    isExist: function (value) {
+      if (!value) return ''
+      return value.average
     }
   },
   beforeMount () {
@@ -185,6 +180,10 @@ export default {
 <style lang="scss" scoped>
 .subject-card {
   padding: 0 1.8rem;
+
+  h1 {
+    margin: 2rem 0 0;
+  }
 }
 
 .subject-info {
