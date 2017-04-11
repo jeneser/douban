@@ -1,5 +1,5 @@
 <template>
-  <div class="rating">
+  <div class="rating" v-if="rating">
     <template v-for="n in full">
       <span class="star-full"></span>
     </template>
@@ -9,15 +9,15 @@
     <template v-for="n in gray">
       <span class="star-gray"></span>
     </template>
-    <span class="average">6.9</span>
-    <span>{{ratingsCount}}人评价</span>
+    <span class="average">{{rating.average}}</span>
+    <slot name="ratingsCount"></slot>
   </div>
 </template>
 
 <script>
 export default {
   name: 'rating',
-  props: ['average', 'ratingsCount'],
+  props: ['rating'],
   data () {
     return {
       full: 5,
@@ -25,10 +25,10 @@ export default {
       gray: 0
     }
   },
-  beforeMount () {
-    console.log(this.average)
-    this.full = parseInt(this.average / 2)
-    this.half = this.average % 2 === 0 ? 0 : 1
+  beforeUpdate () {
+    let average = this.rating.average
+    this.full = parseInt(average / 2)
+    this.half = average % 2 === 0 ? 0 : 1
     this.gray = 5 - this.full - this.half
   }
 }
