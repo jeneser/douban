@@ -14,16 +14,16 @@
     <div class="quickNav" v-if="quickNav">
       <ul class="quick-nav">
         <li>
-          <a href="/pages/movie">影院热映</a>
+          <router-link to="{name: 'MovieView'}">影院热映</router-link>
         </li>
         <li>
-          <a href="/pages/status">欧美新碟榜</a>
+          <router-link to="{name: 'MovieView'}">欧美新碟榜</router-link>
         </li>
         <li>
-          <a href="/pages/book">白先勇细说红楼梦</a>
+          <router-link to="{name: 'MovieView'}">白先勇细说红楼梦</router-link>
         </li>
         <li>
-          <a href="#">使用豆瓣App</a>
+          <router-link to="#">使用豆瓣App</router-link>
         </li>
       </ul>
     </div>
