@@ -1,7 +1,7 @@
 <template>
   <div class="list">
     <template v-for="item in items">
-      <a class="item" :href="'/pages/detail/' + item.id">
+      <router-link class="item" :to="{name: 'DetailView', params: { id: item.id }}">
         <div class="content">
           <img :src="item.image_hlarge" alt="cover">
           <h3>{{item.title}}</h3>
@@ -13,7 +13,7 @@
             本活动来自栏目 {{item.subcategory_name}}
           </span>
         </div>
-      </a>
+      </router-link>
     </template>
   </div>
 </template>
