@@ -64,25 +64,20 @@ For detailed explanation on how things work, checkout the [guide](http://vuejs-t
 ## API
 
 - Basic URI : `https://api.douban.com/V2/`
-
 - Online activities
  - Activities list : `/event/list?loc=108288&count=&start=`
  - Single activitie info : `/event/id`
-
 - Movie
  - In theaters : `/movie/in_theaters?count=`
  - Coming soon : `/movie/coming_soon?count=`
  - Top 250 : `/movie/top250?count=`
  - Single movie info : `/movie/subject/id`
-
 - Book
  - Search some books : `/book/search?q=&count=`
  - Single book info : `/book/id`
-
 - Search
  - Search books : `/book/search?q=`
  - Search movie : `/movie/search?q=`
-
 - Login
  - In development
 
