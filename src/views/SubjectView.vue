@@ -33,7 +33,7 @@
       </div>
       <subject-mark></subject-mark>
       <div class="subject-intro">
-        <h2>{{subject.title}}的剧情简介</h2>
+        <h2>{{subject.title}}的简介</h2>
         <p>
           {{isExpand ? summary : subject.summary}}……
           <a href="javascript:;" v-show="isExpand" v-on:click="expand">
@@ -41,7 +41,10 @@
           </a>
         </p>
       </div>
-      <tags noTitle="false"></tags>
+      <div class="genres">
+        <h2>查看更多相关分类</h2>
+        <tags :items="subject.tags ? subject.tags : subject.genres"></tags>
+      </div>
       <div class="subject-pics">
         <h2>{{subject.title}}的图片</h2>
         <ul v-if="subject.images">
@@ -185,7 +188,7 @@ export default {
         this.$http.jsonp('https://api.douban.com/v2/' + classify +
                '/subject/' + id)
         .then(res => {
-          console.log('movie' + res.body)
+          console.log(res.body)
           this.subject = res.body
         })
         break
@@ -306,7 +309,7 @@ export default {
   }
 }
 
-.subject-intro, .tags, .subject-pics, .subject-comments,
+.subject-intro, .genres, .subject-pics, .subject-comments,
 .ad, .subject-question {
   margin-bottom: 3rem;
 
