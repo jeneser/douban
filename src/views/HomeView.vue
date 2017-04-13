@@ -1,9 +1,8 @@
 <template>
   <div class="home-view has-header">
     <sub-nav quickNav="ok"></sub-nav>
-    <list :items="events"></list>
+    <list mold="thumbnail" :items="events"></list>
     <infinite-loading :on-infinite="onInfinite" ref="infiniteLoading"></infinite-loading>
-
   </div>
 </template>
 
@@ -40,7 +39,7 @@ export default {
                 })
     }
   },
-  beforeMount () {
+  created () {
     this.$http.jsonp('https://api.douban.com/v2/event/list?loc=108288&count=5')
               .then(res => {
                 console.log(res.body.events)

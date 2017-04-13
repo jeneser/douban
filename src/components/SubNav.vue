@@ -14,16 +14,16 @@
     <div class="quickNav" v-if="quickNav">
       <ul class="quick-nav">
         <li>
-          <router-link to="{name: 'MovieView'}">影院热映</router-link>
+          <router-link :to="{name: 'MovieView'}">影院热映</router-link>
         </li>
         <li>
-          <router-link to="{name: 'MovieView'}">欧美新碟榜</router-link>
+          <router-link :to="{name: 'StatusView'}">欧美新碟榜</router-link>
         </li>
         <li>
-          <router-link to="{name: 'MovieView'}">白先勇细说红楼梦</router-link>
+          <router-link :to="{name: 'BookView'}">白先勇细说红楼梦</router-link>
         </li>
         <li>
-          <router-link to="#">使用豆瓣App</router-link>
+          <router-link to="#">登录豆瓣</router-link>
         </li>
       </ul>
     </div>
@@ -68,7 +68,7 @@ export default {
 .quickNav {
   ul {
     overflow: hidden;
-    margin: 2rem 0 0 0;
+    margin: 1rem 0 0 0;
     padding-top: 0.6rem;
 
     li {

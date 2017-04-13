@@ -13,11 +13,11 @@
           <rating :rating="subject.rating">
             <span slot="ratingsCount">{{subject.ratings_count}}人评价</span>
           </rating>
-          <template v-if="movieMeta">
+          <template v-if="subject.genres">
             <p class="meta">{{movieMeta}}</p>
             <a href="#" class="open-app">用App查看影人资料</a>
           </template>
-          <template v-if="bookMeta">
+          <template v-if="subject.author">
             <p class="meta">{{bookMeta}}</p>
             <a href="#" class="buy">在豆瓣购买</a>
           </template>
@@ -35,7 +35,9 @@
       <div class="subject-intro">
         <h2>{{subject.title}}的简介</h2>
         <p>
-          {{isExpand ? summary : subject.summary}}……
+          <template v-if="subject.summary">
+            {{isExpand ? summary : subject.summary}}……
+          </template>
           <a href="javascript:;" v-show="isExpand" v-on:click="expand">
             (展开)
           </a>
@@ -43,7 +45,9 @@
       </div>
       <div class="genres">
         <h2>查看更多相关分类</h2>
-        <tags :items="subject.tags ? subject.tags : subject.genres"></tags>
+        <template v-if="genres">
+          <tags :items="genres"></tags>
+        </template>
       </div>
       <div class="subject-pics">
         <h2>{{subject.title}}的图片</h2>
@@ -69,38 +73,17 @@
     <div class="subject-comments">
       <h2>{{subject.title}}的短评</h2>
       <div class="content-list">
-        <card v-for="item in items" :key="item"></card>
-        <a class="list-link" href="#">显示更多评论</a>
+        <card mold="comment" v-for="item in items" :key="item"></card>
+        <a class="list-link" href="javascript:;">显示更多评论</a>
       </div>
     </div>
     <div class="ad">
       <banner isAd="true" :adImg="adImgUrl" noContent></banner>
     </div>
     <div class="subject-question">
-      <h2>关于{{subject.title}}的问答(28)</h2>
-      <ul class="list">
-        <li><a href="#">
-          <h3>大家为什么对国产片这么苛刻？</h3>
-          <div class="info">35回答</div>
-        </a></li>
-        <li><a href="#">
-          <h3>有没有人喜欢凯凯王版的汤川学？</h3>
-          <div class="info">19回答</div>
-        </a></li>
-        <li><a href="#">
-          <h3>真的有饭店的打包袋长的和优衣库一样吗？</h3>
-          <div class="info">11回答</div>
-        </a></li>
-        <li><a href="#">
-          <h3>最后结尾 石鸿问“这道题难吗？”，唐川说“很难”，什么意思？  ?</h3>
-          <div class="info">7回答</div>
-        </a></li>
-        <li><a href="#">
-          <h3>我就想问真一叔演谁？</h3>
-          <div class="info">9回答</div>
-        </a></li>
-        <a class="list-link" href="#">查看全部问答</a>
-      </ul>
+      <h2>关于{{subject.title}}的问答</h2>
+      <list :items="questions"></list>
+      <a class="list-link" href="javascript:;">显示更多问答</a>
     </div>
     <scroller title="推荐的豆列" type="onlyString" :items="tags"></scroller>
     <download-app></download-app>
@@ -112,13 +95,14 @@ import Banner from '../components/Banner'
 import Rating from '../components/Rating'
 import subjectMark from '../components/SubjectMark'
 import Card from '../components/Card'
+import List from '../components/List'
 import Scroller from '../components/Scroller'
 import Tags from '../components/Tags'
 import DownloadApp from '../components/DownloadApp'
 
 export default {
   name: 'subject-view',
-  components: { Banner, Rating, subjectMark, Card, Scroller, Tags, DownloadApp },
+  components: { Banner, Rating, subjectMark, Card, List, Scroller, Tags, DownloadApp },
   data () {
     return {
       bannerTitle: '聊聊你的观影感受',
@@ -126,6 +110,24 @@ export default {
       isExpand: true,
       items: new Array(5),
       adImgUrl: 'http://img.hb.aicdn.com/c1dd2a72fa6412bd455868be68ca402cf9f94b84e688-WMTPtp_fw658',
+      questions: [
+        {
+          title: '大家为什么对国产片这么苛刻？',
+          comments: '35回答'
+        },
+        {
+          title: '有没有人喜欢凯凯王版的汤川学？',
+          comments: '19回答'
+        },
+        {
+          title: '真的有饭店的打包袋长的和优衣库一样吗？',
+          comments: '11回答'
+        },
+        {
+          title: '最后结尾 石鸿问“这道题难吗？”，唐川说“很难”，什么意思？  ?',
+          comments: '7回答'
+        }
+      ],
       tags: [
         {
           title: '同时入选IMDB250和豆瓣电影250的电影',
@@ -155,14 +157,12 @@ export default {
   },
   computed: {
     movieMeta: function () {
-      if (!this.subject.genres) return ''
       return this.subject.year + this.subject.genres.join(' / ') +
              this.subject.casts.map(item => item.name).join(' / ') +
              this.subject.directors.map(item => item.name).join(' / ') +
              ' / ' + this.subject.countries.join(' / ')
     },
     bookMeta: function () {
-      if (!this.subject.author) return ''
       return this.subject.author.join(' / ') +
              this.subject.translator.join(' / ') + ' / ' +
              this.subject.publisher + ' / ' +
@@ -170,8 +170,10 @@ export default {
              this.subject.price + ' / ' + this.subject.pubdate
     },
     summary: function () {
-      if (!this.subject.summary) return ''
       return this.subject.summary.slice(0, 120)
+    },
+    genres: function () {
+      return this.subject.tags ? this.subject.tags : this.subject.genres
     }
   },
   methods: {
@@ -312,12 +314,12 @@ export default {
 .subject-intro, .genres, .subject-pics, .subject-comments,
 .ad, .subject-question {
   margin-bottom: 3rem;
+}
 
-  h2 {
-    margin: 0 0 1.5rem;
-    font-size: 1.5rem;
-    color: #aaa;
-  }
+h2 {
+  margin: 0 0 1.5rem;
+  font-size: 1.5rem;
+  color: #aaa;
 }
 
 .subject-intro {
@@ -349,8 +351,8 @@ export default {
   }
 }
 
-.subject-comments h2, .subject-comments .list-link, .subject-question {
-  margin: 0 1.8rem;
+.subject-comments h2, .subject-question {
+  padding: 0 1.8rem;
 }
 
 .subject-comments, .subject-question {
@@ -368,21 +370,4 @@ export default {
   margin: 3rem 1.8rem;
   margin-top: -2rem;
 }
-
-.subject-question {
-  h3 {
-    padding: 0;
-    line-height: 1.41;
-    font-size: 1.7rem;
-    font-weight: 500;
-    color: #494949;
-  }
-
-  .info {
-    margin-top: 0.5rem;
-    font-size: 1.4rem;
-    color: #42bd56;
-  }
-}
-
 </style>
