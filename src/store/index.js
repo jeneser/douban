@@ -49,8 +49,55 @@ export default new Vuex.Store({
         href: 'https://m.douban.com/doulist/458087',
         color: '#CC3344'
       }
-    ]
+    ],
+    hotMovies: [],
+    newMovies: [],
+    topMovies: []
+
   },
-  mutations: {},
-  actions: {}
+  mutations: {
+    getMovie (state, payload) {
+      switch (payload.tag) {
+        case 'hotMovies':
+          state.hotMovies = payload.res
+          break
+        case 'newMovies':
+          state.newMovies = payload.res
+          break
+        case 'topMovies':
+          state.topMovies = payload.res
+          break
+        default:
+          state.hotMovies = payload.res
+      }
+    }
+  },
+  actions: {
+    getMovie ({ commit }) {
+      Vue.http.jsonp('https://api.douban.com/v2/movie/in_theaters?count=8')
+              .then(res => {
+                commit({
+                  type: 'getMovie',
+                  tag: 'hotMovies',
+                  res: res.body.subjects
+                })
+              })
+      Vue.http.jsonp('https://api.douban.com/v2/movie/coming_soon?count=8')
+              .then(res => {
+                commit({
+                  type: 'getMovie',
+                  tag: 'newMovies',
+                  res: res.body.subjects
+                })
+              })
+      Vue.http.jsonp('https://api.douban.com/v2/movie/top250?count=8')
+              .then(res => {
+                commit({
+                  type: 'getMovie',
+                  tag: 'topMovies',
+                  res: res.body.subjects
+                })
+              })
+    }
+  }
 })
