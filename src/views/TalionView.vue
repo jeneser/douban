@@ -1,7 +1,7 @@
 <template>
-  <div class="search-view">
+  <div class="talion-view">
     <div class="header-bar">
-      <span class="close-search" @click="closeSearch">关闭</span>
+      <span class="close-talion" @click="closeTalion">关闭</span>
       <form class="search" action="/" method="get">
         <input type="search" name="query" value="">
       </form>
@@ -76,22 +76,22 @@
 import SubNav from '../components/SubNav'
 
 export default {
-  name: 'search-view',
+  name: 'talion-view',
   components: { SubNav },
   data () {
     return {
     }
   },
   methods: {
-    closeSearch: function () {
-      this.$emit('closeSearch')
+    closeTalion: function () {
+      this.$emit('closeTalion')
     }
   }
 }
 </script>
 
 <style lang="scss" scoped>
-.search-view {
+.talion-view {
   position: fixed;
   top: 0;
   width: 100%;
@@ -100,7 +100,7 @@ export default {
   z-index: 999;
 }
 
-.close-search {
+.close-talion {
   color: #42bd56;
   font-size: 1.6rem;
 }

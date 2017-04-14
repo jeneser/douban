@@ -1,29 +1,29 @@
 <template>
   <div class="pages-view">
-    <header-bar @showSearch="open"></header-bar>
+    <header-bar @showTalion="open"></header-bar>
     <router-view></router-view>
-    <search-view v-show="search" @closeSearch="close"></search-view>
+    <talion-view v-show="talion" @closeTalion="close"></talion-view>
   </div>
 </template>
 
 <script>
 import HeaderBar from '../components/HeaderBar.vue'
-import SearchView from '../views/SearchView.vue'
+import TalionView from '../views/TalionView.vue'
 
 export default {
   name: 'pages-view',
-  components: { HeaderBar, SearchView },
+  components: { HeaderBar, TalionView },
   data () {
     return {
-      search: ''
+      talion: ''
     }
   },
   methods: {
     open: function () {
-      this.search = 'open'
+      this.talion = 'open'
     },
     close: function () {
-      this.search = ''
+      this.talion = ''
     }
   }
 }
