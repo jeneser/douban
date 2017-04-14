@@ -1,6 +1,6 @@
 <template>
   <div class="home-view has-header">
-    <sub-nav quickNav="ok"></sub-nav>
+    <sub-nav mold="quickNav"></sub-nav>
     <list mold="thumbnail" :items="events"></list>
     <infinite-loading :on-infinite="onInfinite" ref="infiniteLoading"></infinite-loading>
   </div>
@@ -54,5 +54,4 @@ export default {
   margin: 0 1.8rem;
   padding-top: 0.2rem;
 }
-
 </style>

@@ -1,6 +1,6 @@
 <template>
   <div class="sub-nav">
-    <div class="navBottom" v-if="navBottom">
+    <div class="navBottom" v-if="mold === 'navBottom'">
       <div class="nav-item">
         <a href="https://accounts.douban.com/register">注册帐号</a><!-- replace blank
         --><a href="https://accounts.douban.com/login">登录豆瓣</a>
@@ -11,7 +11,7 @@
       </div>
     </div>
 
-    <div class="quickNav" v-if="quickNav">
+    <div class="quickNav" v-if="mold === 'quickNav'">
       <ul class="quick-nav">
         <li>
           <router-link :to="{name: 'MovieView'}">影院热映</router-link>
@@ -33,7 +33,12 @@
 <script>
 export default {
   name: 'sub-nav',
-  props: ['navBottom', 'quickNav'],
+  props: {
+    mold: {
+      type: String,
+      default: 'quickNav'
+    }
+  },
   data () {
     return {
     }
