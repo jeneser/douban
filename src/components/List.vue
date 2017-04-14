@@ -1,7 +1,9 @@
 <template>
   <div class="list">
     <template v-if="mold === 'thumbnail'" v-for="item in items">
-      <router-link class="thumbnail" :to="{name: 'DetailView', params: { id: item.id }}">
+      <router-link
+        class="thumbnail"
+        :to="{name: 'DetailView', params: { id: item.id }}">
         <div class="content">
           <img :src="item.image_hlarge" alt="cover">
           <h3>{{item.title}}</h3>
@@ -37,8 +39,8 @@ export default {
       default: 'basic'
     },
     items: {
-      type: Array
-      // required: true
+      type: Array,
+      required: true
     }
   },
   data () {

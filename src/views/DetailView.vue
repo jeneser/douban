@@ -37,18 +37,16 @@
       <div class="detail">
         <span>起始时间:&nbsp;&nbsp;</span>
         <ul>
-          <li>{{item.owner | getName}}</li>
+          <li v-if="item.owner">{{item.owner.name}}</li>
         </ul>
       </div>
-      <tags :items="item.tags | toArray"></tags>
-
+      <tags v-if="item.tags" :items="item.tags | toArray"></tags>
       <div class="describe">
         <h2>活动详情</h2>
-        <div class="content" v-html="content"></div>
+        <div v-if="item.content" class="content" v-html="content"></div>
       </div>
     </div>
     <download-app></download-app>
-
   </div>
 </template>
 
@@ -68,20 +66,13 @@ export default {
   },
   filters: {
     toArray (value) {
-      if (!value) return ''
-      value = value.toString()
       return value.split(',')
-    },
-    getName (value) {
-      if (!value) return '豆瓣'
-      return value.name
     }
   },
   computed: {
     content: function () {
       // Careful XSS
       // Remove copyright imgs
-      if (!this.item.content) return ''
       return this.item.content.replace(/<img.+?>/ig, '')
     }
   },

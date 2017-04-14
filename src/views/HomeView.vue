@@ -37,15 +37,6 @@ export default {
       'loadMore',
       'getEvent'
     ])
-    // loadMore: function () {
-    //   this.$store.dispatch('loadMore')
-    // },
-    // getEvent: function () {
-    //   this.$store.dispatch('getEvent')
-    // }
-  },
-  created () {
-    this.getEvent()
   }
 }
 </script>

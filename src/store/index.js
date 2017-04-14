@@ -81,7 +81,7 @@ export default new Vuex.Store({
       state.events = payload.res
     },
     loadMore (state, payload) {
-      state.skip += 5
+      state.skip += 2
       state.events = state.events.concat(payload.res)
     }
   },
