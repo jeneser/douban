@@ -2,8 +2,12 @@
   <div class="talion-view">
     <div class="header-bar">
       <span class="close-talion" @click="closeTalion">关闭</span>
-      <form class="search" action="/" method="get">
-        <input type="search" name="query" value="">
+      <form class="search" onsubmit="return false">
+        <input
+          type="search"
+          name="query"
+          v-model.trim.lazy="queryStr"
+          @keyup.enter="goSearch()">
       </form>
     </div>
     <ul class="has-header">
@@ -80,11 +84,21 @@ export default {
   components: { SubNav },
   data () {
     return {
+      queryStr: ''
     }
   },
   methods: {
     closeTalion: function () {
       this.$emit('closeTalion')
+    },
+    goSearch: function () {
+      this.$emit('closeTalion')
+      this.$router.push({
+        name: 'SearchView',
+        params: {
+          q: this.queryStr
+        }
+      })
     }
   }
 }

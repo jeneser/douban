@@ -42,7 +42,9 @@ const getters = {
     }
   },
   summary: state => {
-    return state.subject.summary.slice(0, 120)
+    if (state.subject.summary) {
+      return state.subject.summary.slice(0, 120)
+    }
   },
   genres: state => {
     if (state.classify === 'book') {

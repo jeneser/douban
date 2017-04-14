@@ -1,19 +1,63 @@
 <template>
   <div class="search-view has-header">
     <div class="search">
-      <form method="get" action="/search" id="search_form">
-        <input type="text" name="query" placeholder="搜索 书 / 影 / 音 / 标签" value="">
-        <a class="button-search" href="javascript:void(0);">搜索</a>
+      <form id="search_form" onsubmit="return false">
+        <input
+          type="text"
+          name="query"
+          v-model.trim.lazy="queryStr"
+          placeholder="搜索 书 / 影 / 音 / 标签">
+        <a href="javascript:void(0);" :click="query()">搜索</a>
       </form>
+    </div>
+    <div v-if="queryStr" class="search-res">
+      <group title="影视" :items="queryRes">
+        <a class="list-link" href="#" slot="more">查看更多影视结果</a>
+      </group>
+      <group title="图书" :items="queryRes">
+        <a class="list-link" href="#" slot="more">查看更多图书结果</a>
+      </group>
+      <group title="音乐" :items="queryRes">
+        <a class="list-link" href="#" slot="more">查看更多音乐结果</a>
+      </group>
     </div>
   </div>
 </template>
 
 <script>
+import { mapState } from 'vuex'
+
+import Group from '../components/Group'
+
 export default {
   name: 'search-view',
+  components: { Group },
   data () {
-    return {}
+    return {
+      queryStr: ''
+    }
+  },
+  computed: {
+    ...mapState({
+      queryRes: state => state.search.queryRes
+    })
+  },
+  methods: {
+    query: function () {
+      if (this.queryStr) {
+        this.$store.dispatch({
+          type: 'query',
+          queryStr: this.queryStr
+        })
+      }
+    }
+  },
+  created: function () {
+    const q = this.$route.params.q
+    if (q) {
+      console.log(q)
+      this.queryStr = q
+    }
   }
 }
 </script>
@@ -49,6 +93,15 @@ export default {
       color: #333;
       text-decoration: none;
     }
+  }
+
+  .list-link {
+    display: block;
+    margin-bottom: 1.5rem;
+    padding: 1.5rem 0 1.5rem 5rem;
+    font-size: 1.6rem;
+    line-height: 1.8rem;
+    color: #42bd56;
   }
 }
 </style>

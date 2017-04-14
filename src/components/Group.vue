@@ -4,40 +4,17 @@
       <h2>{{title}}</h2>
     </div>
     <ul class="content">
-      <li>
+      <li v-for="item in items">
         <a href="#">
           <div class="group-meta">
-            <img src="https://img3.doubanio.com/icon/g173252-1.jpg" alt="">
-            <span class="group-name">浦东租房专区</span>
-            <span class="group-member">20005人</span>
+            <img :src="item.images.small" alt="cover">
+            <div class="group-info">
+              <span>{{item.title}}</span>
+              <rating v-if="item.rating" :rating="item.rating"></rating>
+            </div>
+            <span v-if="item.group_member" class="group-member">20005人</span>
           </div>
-          <div class="group-topic">
-            <span>5分钟前更新：</span>
-            <span>浦东 2号线/7号线 次卧  地铁5分钟</span>
-          </div>
-        </a>
-      </li>
-      <li>
-        <a href="#">
-          <div class="group-meta">
-            <img src="https://img3.doubanio.com/icon/g173252-1.jpg" alt="">
-            <span class="group-name">浦东租房专区</span>
-            <span class="group-member">20005人</span>
-          </div>
-          <div class="group-topic">
-            <span>5分钟前更新：</span>
-            <span>浦东 2号线/7号线 次卧  地铁5分钟</span>
-          </div>
-        </a>
-      </li>
-      <li>
-        <a href="#">
-          <div class="group-meta">
-            <img src="https://img3.doubanio.com/icon/g173252-1.jpg" alt="">
-            <span class="group-name">浦东租房专区</span>
-            <span class="group-member">20005人</span>
-          </div>
-          <div class="group-topic">
+          <div v-if="item.group_topic" class="group-topic">
             <span>5分钟前更新：</span>
             <span>浦东 2号线/7号线 次卧  地铁5分钟</span>
           </div>
@@ -49,15 +26,27 @@
 </template>
 
 <script>
-  export default {
-    name: 'group',
-    props: ['title'],
-    data () {
-      return {
+import Rating from '../components/Rating'
 
-      }
+export default {
+  name: 'group',
+  components: { Rating },
+  props: {
+    title: {
+      type: String,
+      required: true
+    },
+    items: {
+      type: Array,
+      required: true
+    }
+  },
+  data () {
+    return {
+
     }
   }
+}
 </script>
 
 <style lang="scss" scoped>
@@ -77,9 +66,13 @@
   .group-meta {
     display: flex;
     align-items: center;
+
+    img {
+      width: 4rem;
+    }
   }
 
-  .group-name {
+  .group-info {
     flex: 1;
     padding: 0 1rem;
     font-size: 1.8rem;
@@ -104,13 +97,8 @@
   }
 }
 
-li::after {
-  content: '';
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  width: 100%;
-  height: 0.1rem;
-  background: #E8E8E8;
+li  {
+  border-bottom: 1px solid #F2F2F2;
+  overflow: hidden;
 }
 </style>
