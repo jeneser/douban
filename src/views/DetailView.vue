@@ -73,10 +73,10 @@ export default {
       // Remove copyright imgs
       return this.eventItem.content.replace(/<img.+?>/ig, '')
     },
-    ...mapState([
-      'bannerTitle',
-      'eventItem'
-    ])
+    ...mapState({
+      bannerTitle: state => state.activities.bannerTitle,
+      eventItem: state => state.activities.eventItem
+    })
   },
   beforeMount () {
     const id = this.$route.params.id

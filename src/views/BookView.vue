@@ -12,14 +12,15 @@
         </div>
       </div>
     </scroller>
-    <scroller title="发现好书" type="onlyString" :items="tags"></scroller>
-
+    <scroller title="发现好书" type="onlyString" :items="bookTags"></scroller>
     <types></types>
     <download-app></download-app>
   </div>
 </template>
 
 <script>
+import { mapState } from 'vuex'
+
 import Scroller from '../components/Scroller.vue'
 import Types from '../components/Types.vue'
 import DownloadApp from '../components/DownloadApp.vue'
@@ -28,61 +29,23 @@ export default {
   name: 'book-view',
   components: { Scroller, Types, DownloadApp },
   data () {
-    return {
-      novel: [],
-      reality: [],
-      travel: [],
-      tags: [
-        {
-          title: '不可饶恕的女人们',
-          href: 'https://m.douban.com/doulist/35573',
-          color: '#42BD56'
-        },
-        {
-          title: '爱欲书',
-          href: 'https://m.douban.com/doulist/38088147',
-          color: '#FF4055'
-        },
-        {
-          title: '他们还写侦探小说',
-          href: 'https://m.douban.com/doulist/645579',
-          color: '#4F9DED'
-        },
-        {
-          line: true
-        },
-        {
-          title: '人生识字始忧患',
-          href: 'https://m.douban.com/doulist/192653',
-          color: '#CC3344'
-        },
-        {
-          title: '詩歌書店',
-          href: 'https://m.douban.com/doulist/89925',
-          color: '#FFAC2D'
-        },
-        {
-          title: '尝试理解人类变化无常不可测心理相关小荐',
-          href: 'https://m.douban.com/doulist/45361809',
-          color: '#3BA94D'
-        }
-      ]
+    return {}
+  },
+  computed: {
+    ...mapState({
+      novel: state => state.book.novel,
+      reality: state => state.book.reality,
+      travel: state => state.book.travel,
+      bookTags: state => state.book.bookTags
+    })
+  },
+  methods: {
+    getBook: function () {
+      this.$store.dispatch('getBook')
     }
   },
-  beforeMount () {
-    this.$http.jsonp('https://api.douban.com/v2/book/search?q=虚构类&count=8')
-              .then(res => {
-                this.novel = res.body.books
-                console.log(res.body.books)
-              })
-    this.$http.jsonp('https://api.douban.com/v2/book/search?q=非虚构类&count=8')
-              .then(res => {
-                this.reality = res.body.books
-              })
-    this.$http.jsonp('https://api.douban.com/v2/book/search?q=旅行&count=8')
-              .then(res => {
-                this.travel = res.body.books
-              })
+  created: function created () {
+    this.getBook()
   }
 }
 </script>

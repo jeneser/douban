@@ -4,7 +4,7 @@
       <img src="../assets/promotion_bg.jpg" alt="">
     </div>
     <div class="banner-bg ad" v-if="isAd">
-      <img :src="adImg" alt="ad">
+      <img src="../assets/promotion_bg.jpg" alt="ad">
     </div>
     <div class="content" v-if="noContent">
       <span class="title">{{title}}</span>

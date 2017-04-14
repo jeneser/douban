@@ -20,11 +20,9 @@ export default {
     return {}
   },
   computed: {
-    ...mapState([
-      'events',
-      'temp',
-      'skip'
-    ])
+    ...mapState({
+      events: state => state.activities.events
+    })
   },
   methods: {
     onInfinite () {

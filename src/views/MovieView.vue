@@ -23,12 +23,12 @@ export default {
     return {}
   },
   computed: {
-    ...mapState([
-      'movieTags',
-      'hotMovies',
-      'newMovies',
-      'topMovies'
-    ])
+    ...mapState({
+      hotMovies: state => state.movie.hotMovies,
+      topMovies: state => state.movie.topMovies,
+      newMovies: state => state.movie.newMovies,
+      movieTags: state => state.movie.movieTags
+    })
   },
   methods: {
     getMovie: function () {
