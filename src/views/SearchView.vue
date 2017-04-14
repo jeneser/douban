@@ -14,10 +14,10 @@
       <group title="影视" :items="queryRes_movie">
         <a class="list-link" href="#" slot="more">查看更多影视结果</a>
       </group>
-      <group title="图书" :items="queryRes_book">
+      <group title="图书" :items="queryRes_movie">
         <a class="list-link" href="#" slot="more">查看更多图书结果</a>
       </group>
-      <group title="音乐" :items="queryRes_music">
+      <group title="音乐" :items="queryRes_movie">
         <a class="list-link" href="#" slot="more">查看更多音乐结果</a>
       </group>
     </div>
@@ -39,9 +39,10 @@ export default {
   },
   computed: {
     ...mapState({
-      queryRes_movie: state => state.search.queryRes_movie,
-      queryRes_book: state => state.search.queryRes_book,
-      queryRes_music: state => state.search.queryRes_music
+      queryRes_movie: state => state.search.queryRes_movie
+      // API rate limit exceeded
+      // queryRes_book: state => state.search.queryRes_book,
+      // queryRes_music: state => state.search.queryRes_music
     })
   },
   methods: {

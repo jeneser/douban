@@ -35,24 +35,25 @@ const actions = {
                 res: res.body.subjects
               })
             })
-    Vue.http.jsonp('https://api.douban.com/v2/book/search?q=' +
-                   payload.queryStr + '&count=3')
-            .then(res => {
-              commit({
-                type: 'query',
-                tag: 'book',
-                res: res.body
-              })
-            })
-    Vue.http.jsonp('https://api.douban.com/v2/music/search?q=' +
-                   payload.queryStr + '&count=3')
-            .then(res => {
-              commit({
-                type: 'query',
-                tag: 'music',
-                res: res.body.subjects
-              })
-            })
+    // API rate limit exceeded
+    // Vue.http.jsonp('https://api.douban.com/v2/book/search?q=' +
+    //                payload.queryStr + '&count=3')
+    //         .then(res => {
+    //           commit({
+    //             type: 'query',
+    //             tag: 'book',
+    //             res: res.body
+    //           })
+    //         })
+    // Vue.http.jsonp('https://api.douban.com/v2/music/search?q=' +
+    //                payload.queryStr + '&count=3')
+    //         .then(res => {
+    //           commit({
+    //             type: 'query',
+    //             tag: 'music',
+    //             res: res.body.subjects
+    //           })
+    //         })
   }
 }
 
