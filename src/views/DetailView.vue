@@ -3,47 +3,47 @@
     <banner :title="bannerTitle"></banner>
     <div class="info">
       <h2>
-        {{item.title}}
-        <span class="badge">{{item.loc_name}}</span>
+        {{eventItem.title}}
+        <span class="badge">{{eventItem.loc_name}}</span>
       </h2>
       <div class="poster">
-        <img :src="item.image_hlarge" alt="">
+        <img :src="eventItem.image_hlarge" alt="">
       </div>
       <div class="detail">
         <span>时间:&nbsp;&nbsp;</span>
         <ul>
-          <li>{{item.begin_time}}</li>
-          <li>{{item.end_time}}</li>
+          <li>{{eventItem.begin_time}}</li>
+          <li>{{eventItem.end_time}}</li>
         </ul>
       </div>
       <div class="detail">
         <span>地点:&nbsp;&nbsp;</span>
         <ul>
-          <li>{{item.address}}</li>
+          <li>{{eventItem.address}}</li>
         </ul>
       </div>
       <div class="detail">
         <span>费用:&nbsp;&nbsp;</span>
         <ul>
-          <li>{{item.fee_str}}</li>
+          <li>{{eventItem.fee_str}}</li>
         </ul>
       </div>
       <div class="detail">
         <span>类型:&nbsp;&nbsp;</span>
         <ul>
-          <li>{{item.category_name}}</li>
+          <li>{{eventItem.category_name}}</li>
         </ul>
       </div>
       <div class="detail">
         <span>起始时间:&nbsp;&nbsp;</span>
         <ul>
-          <li v-if="item.owner">{{item.owner.name}}</li>
+          <li v-if="eventItem.owner">{{eventItem.owner.name}}</li>
         </ul>
       </div>
-      <tags v-if="item.tags" :items="item.tags | toArray"></tags>
+      <tags v-if="eventItem.tags" :items="eventItem.tags | toArray"></tags>
       <div class="describe">
         <h2>活动详情</h2>
-        <div v-if="item.content" class="content" v-html="content"></div>
+        <div v-if="eventItem.content" class="content" v-html="content"></div>
       </div>
     </div>
     <download-app></download-app>
@@ -51,6 +51,7 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
 import Banner from '../components/Banner'
 import Tags from '../components/Tags'
 import DownloadApp from '../components/DownloadApp.vue'
@@ -59,10 +60,7 @@ export default {
   name: 'detail-view',
   components: { Banner, Tags, DownloadApp },
   data () {
-    return {
-      bannerTitle: '每天看点好内容',
-      item: {}
-    }
+    return {}
   },
   filters: {
     toArray (value) {
@@ -73,16 +71,19 @@ export default {
     content: function () {
       // Careful XSS
       // Remove copyright imgs
-      return this.item.content.replace(/<img.+?>/ig, '')
-    }
+      return this.eventItem.content.replace(/<img.+?>/ig, '')
+    },
+    ...mapState([
+      'bannerTitle',
+      'eventItem'
+    ])
   },
   beforeMount () {
     const id = this.$route.params.id
-    this.$http.jsonp('https://api.douban.com/v2/event/' + id)
-              .then(res => {
-                console.log(res.body)
-                this.item = res.body
-              })
+    this.$store.dispatch({
+      type: 'getSingleEvent',
+      id: id
+    })
   }
 }
 </script>

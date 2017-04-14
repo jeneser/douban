@@ -57,8 +57,10 @@ export default new Vuex.Store({
     // Home events state
     events: [],
     temp: [],
-    skip: 0
-
+    skip: 0,
+    // Detail state
+    bannerTitle: '每天看点好内容',
+    eventItem: {}
   },
   mutations: {
     getMovie (state, payload) {
@@ -83,6 +85,9 @@ export default new Vuex.Store({
     loadMore (state, payload) {
       state.skip += 2
       state.events = state.events.concat(payload.res)
+    },
+    getSingleEvent (state, payload) {
+      state.eventItem = payload.res
     }
   },
   actions: {
@@ -128,6 +133,15 @@ export default new Vuex.Store({
                 commit({
                   type: 'loadMore',
                   res: res.body.events
+                })
+              })
+    },
+    getSingleEvent ({commit, state}, payload) {
+      Vue.http.jsonp('https://api.douban.com/v2/event/' + payload.id)
+              .then(res => {
+                commit({
+                  type: 'getSingleEvent',
+                  res: res.body
                 })
               })
     }
