@@ -5,6 +5,7 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
+    // Movie state
     movieTags: [
       {
         title: '同时入选IMDB250和豆瓣电影250的电影',
@@ -52,7 +53,11 @@ export default new Vuex.Store({
     ],
     hotMovies: [],
     newMovies: [],
-    topMovies: []
+    topMovies: [],
+    // Home events state
+    events: [],
+    temp: [],
+    skip: 0
 
   },
   mutations: {
@@ -70,6 +75,14 @@ export default new Vuex.Store({
         default:
           state.hotMovies = payload.res
       }
+    },
+    // Home events state
+    getEvent (state, payload) {
+      state.events = payload.res
+    },
+    loadMore (state, payload) {
+      state.skip += 5
+      state.events = state.events.concat(payload.res)
     }
   },
   actions: {
@@ -96,6 +109,25 @@ export default new Vuex.Store({
                   type: 'getMovie',
                   tag: 'topMovies',
                   res: res.body.subjects
+                })
+              })
+    },
+    getEvent ({commit}) {
+      Vue.http.jsonp('https://api.douban.com/v2/event/list?loc=108288&count=5')
+              .then(res => {
+                commit({
+                  type: 'getEvent',
+                  res: res.body.events
+                })
+              })
+    },
+    loadMore ({commit, state}) {
+      Vue.http.jsonp('https://api.douban.com/v2/event/list?loc=108288&start=' +
+                        state.skip + '&count=5')
+              .then(res => {
+                commit({
+                  type: 'loadMore',
+                  res: res.body.events
                 })
               })
     }

@@ -7,6 +7,8 @@
 </template>
 
 <script>
+import { mapState, mapActions } from 'vuex'
+
 import InfiniteLoading from 'vue-infinite-loading'
 import SubNav from '../components/SubNav'
 import List from '../components/List'
@@ -15,36 +17,35 @@ export default {
   name: 'home-view',
   components: { SubNav, List, InfiniteLoading },
   data () {
-    return {
-      events: [],
-      temp: [],
-      skip: 5
-    }
+    return {}
+  },
+  computed: {
+    ...mapState([
+      'events',
+      'temp',
+      'skip'
+    ])
   },
   methods: {
     onInfinite () {
       setTimeout(() => {
         this.loadMore()
-        this.events = this.events.concat(this.temp)
         this.$refs.infiniteLoading.$emit('$InfiniteLoading:loaded')
       }, 1000)
     },
-    loadMore () {
-      this.$http.jsonp('https://api.douban.com/v2/event/list?loc=108288&start=' +
-                        this.skip + '&count=5')
-                .then(res => {
-                  console.log(res.body.events)
-                  this.skip *= 2
-                  this.temp = res.body.events
-                })
-    }
+    ...mapActions([
+      'loadMore',
+      'getEvent'
+    ])
+    // loadMore: function () {
+    //   this.$store.dispatch('loadMore')
+    // },
+    // getEvent: function () {
+    //   this.$store.dispatch('getEvent')
+    // }
   },
   created () {
-    this.$http.jsonp('https://api.douban.com/v2/event/list?loc=108288&count=5')
-              .then(res => {
-                console.log(res.body.events)
-                this.events = res.body.events
-              })
+    this.getEvent()
   }
 }
 </script>
