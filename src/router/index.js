@@ -1,15 +1,15 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 
-import PagesView from '../views/PagesView.vue'
-import HomeView from '../views/HomeView.vue'
-import MovieView from '../views/MovieView.vue'
-import BookView from '../views/BookView.vue'
-import StatusView from '../views/StatusView.vue'
-import GroupView from '../views/GroupView.vue'
-import SubjectView from '../views/SubjectView.vue'
-import DetailView from '../views/DetailView.vue'
-
+import PagesView from '../views/PagesView'
+import HomeView from '../views/HomeView'
+import MovieView from '../views/MovieView'
+import BookView from '../views/BookView'
+import StatusView from '../views/StatusView'
+import GroupView from '../views/GroupView'
+import SubjectView from '../views/SubjectView'
+import DetailView from '../views/DetailView'
+import SearchView from '../views/SearchView'
 Vue.use(Router)
 
 export default new Router({
@@ -64,6 +64,14 @@ export default new Router({
       components: {
         default: PagesView,
         subject: SubjectView
+      }
+    },
+    {
+      path: '/search',
+      name: 'SearchView',
+      components: {
+        default: PagesView,
+        search: SearchView
       }
     },
     {

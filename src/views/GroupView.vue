@@ -17,8 +17,8 @@
 </template>
 
 <script>
-import Group from '../components/Group.vue'
-import DownloadApp from '../components/DownloadApp.vue'
+import Group from '../components/Group'
+import DownloadApp from '../components/DownloadApp'
 
 export default {
   name: 'group-view',

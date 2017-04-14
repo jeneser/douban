@@ -21,9 +21,9 @@
 <script>
 import { mapState } from 'vuex'
 
-import Scroller from '../components/Scroller.vue'
-import Types from '../components/Types.vue'
-import DownloadApp from '../components/DownloadApp.vue'
+import Scroller from '../components/Scroller'
+import Types from '../components/Types'
+import DownloadApp from '../components/DownloadApp'
 
 export default {
   name: 'book-view',

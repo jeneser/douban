@@ -10,9 +10,9 @@
 </template>
 
 <script>
-import Card from '../components/Card.vue'
-import Banner from '../components/Banner.vue'
-import DownloadApp from '../components/DownloadApp.vue'
+import Card from '../components/Card'
+import Banner from '../components/Banner'
+import DownloadApp from '../components/DownloadApp'
 
 export default {
   name: 'status',

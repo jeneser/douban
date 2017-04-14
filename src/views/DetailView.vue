@@ -54,7 +54,7 @@
 import { mapState } from 'vuex'
 import Banner from '../components/Banner'
 import Tags from '../components/Tags'
-import DownloadApp from '../components/DownloadApp.vue'
+import DownloadApp from '../components/DownloadApp'
 
 export default {
   name: 'detail-view',

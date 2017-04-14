@@ -7,8 +7,8 @@
 </template>
 
 <script>
-import HeaderBar from '../components/HeaderBar.vue'
-import TalionView from '../views/TalionView.vue'
+import HeaderBar from '../components/HeaderBar'
+import TalionView from '../views/TalionView'
 
 export default {
   name: 'pages-view',
