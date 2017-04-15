@@ -51,7 +51,7 @@ const actions = {
     //           commit({
     //             type: 'query',
     //             tag: 'music',
-    //             res: res.body.subjects
+    //             res: res.body.musics
     //           })
     //         })
   }

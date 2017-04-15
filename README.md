@@ -19,6 +19,7 @@
 ## Features
 
 - Vue + vue-router + vuex + vue-resource working together
+- Vuex divide store into modules
 - Modern JavaScript syntax with ES6
 - vue-cli webpack template
 - Single-file Vue Components
@@ -28,13 +29,13 @@
 - Hot-reload in development
 - Css with Sass
 - No third party CSS framework
-- Authentication with JSON Web Tokens
 - Complex and different style view logic
 - Infinite loading list
-- Complete login logic
 - Complete search logic
 - Custom components like List, Rating, Tags ...
-....
+- Authentication with JSON Web Tokens developing
+- Complete login logic developing
+......
 
 
 ## Build Setup
@@ -78,6 +79,7 @@ For detailed explanation on how things work, checkout the [guide](http://vuejs-t
 - Search
  - Search books : `/book/search?q=`
  - Search movie : `/movie/search?q=`
+ - Search music : `/music/search?q=`
 - Login
  - In development
 
@@ -127,7 +129,14 @@ For detailed explanation, checkout the [douban api](https://developers.douban.co
 │   ├── router
 │   │   └── index.js
 │   ├── store
-│   │   └── index.js
+│   │   ├── index.js
+│   │   └── modules
+│   │       ├── activities.js
+│   │       ├── book.js
+│   │       ├── group.js
+│   │       ├── movie.js
+│   │       ├── search.js
+│   │       └── subject.js
 │   └── views
 │       ├── BookView.vue
 │       ├── DetailView.vue
@@ -137,7 +146,8 @@ For detailed explanation, checkout the [douban api](https://developers.douban.co
 │       ├── PagesView.vue
 │       ├── SearchView.vue
 │       ├── StatusView.vue
-│       └── SubjectView.vue
+│       ├── SubjectView.vue
+│       └── TalionView.vue
 └── static
     └── logo.png
 ```
