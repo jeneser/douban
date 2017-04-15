@@ -7,7 +7,7 @@
       <li v-for="item in items">
         <a href="#">
           <div class="group-meta">
-            <img :src="item.images.small" alt="cover">
+            <img v-if="item.images.small" :src="item.images.small" alt="cover">
             <div class="group-info">
               <span>{{item.title}}</span>
               <rating v-if="item.rating" :rating="item.rating"></rating>
@@ -15,8 +15,8 @@
             <span v-if="item.group_member" class="group-member">20005人</span>
           </div>
           <div v-if="item.group_topic" class="group-topic">
-            <span>5分钟前更新：</span>
-            <span>浦东 2号线/7号线 次卧  地铁5分钟</span>
+            <span>{{item.group_topic.time}}</span>
+            <span>{{item.group_topic.title}}</span>
           </div>
         </a>
       </li>

@@ -1,22 +1,21 @@
 <template>
   <div class="group-view has-header">
-    <group title="租房找室友">
+    <group title="租房找室友" :items="group_a">
       <a class="list-link" href="#" slot="more">更多相关小组</a>
     </group>
-    <group title="租房找室友">
+    <group title="来聊五块钱" :items="group_b">
       <a class="list-link" href="#" slot="more">来聊五块钱</a>
     </group>
-    <group title="租房找室友">
+    <group title="买买买" :items="group_c">
       <a class="list-link" href="#" slot="more">更多相关小组</a>
-    </group>
-    <group title="租房找室友">
-      <a class="list-link" href="#" slot="more">来聊五块钱</a>
     </group>
     <download-app></download-app>
   </div>
 </template>
 
 <script>
+import { mapState } from 'vuex'
+
 import Group from '../components/Group'
 import DownloadApp from '../components/DownloadApp'
 
@@ -24,9 +23,17 @@ export default {
   name: 'group-view',
   components: { Group, DownloadApp },
   data () {
-    return {
-
-    }
+    return {}
+  },
+  computed: {
+    ...mapState({
+      group_a: state => state.group.group_a,
+      group_b: state => state.group.group_b,
+      group_c: state => state.group.group_c
+    })
+  },
+  created: function () {
+    this.$store.dispatch('getGroup')
   }
 }
 </script>

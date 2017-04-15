@@ -5,6 +5,7 @@ import movie from './modules/movie'
 import activities from './modules/activities'
 import book from './modules/book'
 import subject from './modules/subject'
+import group from './modules/group'
 import search from './modules/search'
 
 Vue.use(Vuex)
@@ -15,6 +16,7 @@ export default new Vuex.Store({
     activities,
     book,
     subject,
+    group,
     search
   }
 })
