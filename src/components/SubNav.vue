@@ -23,7 +23,7 @@
           <router-link :to="{name: 'BookView'}">白先勇细说红楼梦</router-link>
         </li>
         <li>
-          <router-link to="#">登录豆瓣</router-link>
+          <router-link :to="{name: 'LoginView'}">登录豆瓣</router-link>
         </li>
       </ul>
     </div>
