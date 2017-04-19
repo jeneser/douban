@@ -11,6 +11,7 @@ import SubjectView from '../views/SubjectView'
 import DetailView from '../views/DetailView'
 import SearchView from '../views/SearchView'
 import LoginView from '../views/LoginView'
+import RegisterView from '../views/RegisterView'
 
 Vue.use(Router)
 
@@ -80,6 +81,11 @@ export default new Router({
       path: '/login',
       name: 'LoginView',
       component: LoginView
+    },
+    {
+      path: '/register',
+      name: 'RegisterView',
+      component: RegisterView
     },
     {
       path: '*',

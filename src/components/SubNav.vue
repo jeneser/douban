@@ -2,8 +2,8 @@
   <div class="sub-nav">
     <div class="navBottom" v-if="mold === 'navBottom'">
       <div class="nav-item">
-        <a href="https://accounts.douban.com/register">注册帐号</a><!-- replace blank
-        --><a href="https://accounts.douban.com/login">登录豆瓣</a>
+        <router-link :to="{name: 'RegisterView'}">注册帐号</router-link><!-- replace blank
+        --><router-link :to="{name: 'LoginView'}">登录豆瓣</router-link>
       </div>
       <div class="nav-item">
         <a href="https://movie.douban.com/">使用桌面版</a><!-- replace blank
@@ -20,7 +20,7 @@
           <router-link :to="{name: 'StatusView'}">欧美新碟榜</router-link>
         </li>
         <li>
-          <router-link :to="{name: 'BookView'}">白先勇细说红楼梦</router-link>
+          <router-link :to="{name: 'RegisterView'}">注册帐号</router-link>
         </li>
         <li>
           <router-link :to="{name: 'LoginView'}">登录豆瓣</router-link>
