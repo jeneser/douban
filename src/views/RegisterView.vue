@@ -162,9 +162,9 @@ export default {
     }
 
     .btns {
-      margin-top: 40px;
+      margin-top: 4rem;
       text-align: center;
-      font-size: 15px;
+      font-size: 1.5rem;
 
       a {
         color: #42bd56;

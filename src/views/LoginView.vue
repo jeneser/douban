@@ -6,32 +6,32 @@
     <form method="" action="">
       <div class="form-user">
         <label>
-            <strong>帐号</strong>
-            <input
-              v-model="user"
-              type="text"
-              name="user"
-              placeholder="邮箱 / 手机号 / 用户名">
+          <strong>帐号</strong>
+          <input
+            v-model="user"
+            type="text"
+            name="user"
+            placeholder="邮箱 / 手机号 / 用户名">
         </label>
       </div>
       <div class="form-pwd">
         <label>
-            <strong>请输入密码</strong>
-            <template v-if="passType === 'password'">
-              <input
-              v-model="password"
-              type="password"
-              name="password"
-              placeholder="密码">
-            </template>
-            <template v-if="passType === 'text'">
-              <input
-              v-model="password"
-              type="text"
-              name="password"
-              placeholder="密码">
-            </template>
-            <span class="showpwd" :class="{show: isShow}" @click="showpwd()"></span>
+          <strong>请输入密码</strong>
+          <template v-if="passType === 'password'">
+            <input
+            v-model="password"
+            type="password"
+            name="password"
+            placeholder="密码">
+          </template>
+          <template v-if="passType === 'text'">
+            <input
+            v-model="password"
+            type="text"
+            name="password"
+            placeholder="密码">
+          </template>
+          <span class="showpwd" :class="{show: isShow}" @click="showpwd()"></span>
         </label>
       </div>
       <!-- <div class="form-element hide">
@@ -167,9 +167,9 @@ export default {
     }
 
     .btns {
-      margin-top: 40px;
+      margin-top: 4rem;
       text-align: center;
-      font-size: 15px;
+      font-size: 1.5rem;
 
       a {
         color: #42bd56;

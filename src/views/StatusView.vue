@@ -1,6 +1,7 @@
 <template>
   <div class="status has-header">
     <banner></banner>
+    <user-bar holder="登录发广播"></user-bar>
     <div class="content-list">
       <card mold="quote" v-for="item in items" :key="item"></card>
       <a class="list-link" href="#">显示更多广播</a>
@@ -10,13 +11,14 @@
 </template>
 
 <script>
-import Card from '../components/Card'
 import Banner from '../components/Banner'
+import UserBar from '../components/UserBar'
+import Card from '../components/Card'
 import DownloadApp from '../components/DownloadApp'
 
 export default {
   name: 'status',
-  components: { Card, Banner, DownloadApp },
+  components: { Banner, UserBar, Card, DownloadApp },
   data () {
     return {
       items: new Array(10)
