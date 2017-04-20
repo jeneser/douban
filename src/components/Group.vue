@@ -6,10 +6,9 @@
     <ul class="content">
       <li v-for="item in items">
         <router-link
-          :to="{
-            name: 'SubjectView',
-            params: {classify: item.subtype ? item.subtype : 'book',
-            id: item.id}}">
+          :to="{name: 'SubjectView',
+          params: {classify: item.subtype ? item.subtype : 'book',
+          id: item.id}}">
           <div class="group-meta">
             <img v-if="item.images.small" :src="item.images.small" alt="cover">
             <div class="group-info">
