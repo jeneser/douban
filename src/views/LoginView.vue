@@ -3,15 +3,16 @@
     <h1>
       <a href="javascript:history.go(-1);">取消</a>登录豆瓣
     </h1>
-    <form method="" action="">
+    <form method="get" @submit.prevent="onSubmit()">
+      <p v-if="error" class="tip error">{{error}}</p>
       <div class="form-user">
         <label>
-          <strong>帐号</strong>
+          <strong>邮箱</strong>
           <input
-            v-model="user"
-            type="text"
-            name="user"
-            placeholder="邮箱 / 手机号 / 用户名">
+            v-model="email"
+            type="email"
+            name="email"
+            placeholder="邮箱">
         </label>
       </div>
       <div class="form-pwd">
@@ -19,17 +20,17 @@
           <strong>请输入密码</strong>
           <template v-if="passType === 'password'">
             <input
-            v-model="password"
+            v-model="token"
             type="password"
-            name="password"
-            placeholder="密码">
+            name="token"
+            placeholder="Token">
           </template>
           <template v-if="passType === 'text'">
             <input
-            v-model="password"
+            v-model="token"
             type="text"
-            name="password"
-            placeholder="密码">
+            name="token"
+            placeholder="Token">
           </template>
           <span class="showpwd" :class="{show: isShow}" @click="showpwd()"></span>
         </label>
@@ -39,7 +40,7 @@
         <label for="remember">下次自动登录</label>
       </div> -->
       <div class="">
-        <input class="submit" type="submit" value="登录">
+        <button class="submit" type="submit">{{loginState}}</button>
       </div>
     </form>
     <div class="footer">
@@ -57,17 +58,38 @@ export default {
   name: 'login-view',
   data () {
     return {
+      loginState: '登录',
       isShow: 0,
+      error: '',
       passType: 'password',
-      user: '',
-      password: ''
+      email: '',
+      token: ''
     }
   },
   methods: {
     showpwd: function () {
       this.isShow = this.isShow ? 0 : 1
       this.isShow ? this.passType = 'text' : this.passType = 'password'
+    },
+    onSubmit: function () {
+      console.log('Submiting...')
+      this.loginState = '正在登录...'
+      this.$http.get('https://douban.herokuapp.com/user/' + this.email, {
+        headers: {
+          Authorization: 'Bearer ' + this.token
+        }
+      }).then(res => {
+        console.log('complete!')
+        this.$router.push({name: 'HomeView'})
+      }, res => {
+        this.error = res.body.error
+        this.loginState = '登录'
+      })
     }
+  },
+  created () {
+    this.token = localStorage.getItem('token')
+    this.email = localStorage.getItem('email')
   }
 }
 </script>
@@ -105,7 +127,7 @@ export default {
       margin-bottom: 0.5rem;
     }
 
-    input[type="text"], input[type="password"] {
+    input[type="email"], input[type="text"], input[type="password"] {
       display: inline-block;
       width: 100%;
       height: 4.4rem;
@@ -123,6 +145,7 @@ export default {
       position: relative;
 
       input {
+        padding-right: 4rem;
         border-top: 0;
       }
 
@@ -156,6 +179,15 @@ export default {
       background: #17AA52;
       border: 0.1rem solid #17AA52;
       border-radius: 0.3rem;
+    }
+
+    .tip {
+      font-size: 1.4rem;
+      color: #aaa;
+    }
+
+    .error {
+      color: #ff0000;
     }
   }
 

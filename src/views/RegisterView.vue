@@ -1,57 +1,81 @@
 <template>
   <div class="register-view">
-    <h1 class="title">欢迎加入豆瓣</h1>
-    <form method="" action="">
-      <div class="form-alias">
-        <label>
-          <strong>帐号</strong>
-          <input
-            v-model="alias"
-            type="text"
-            name="alias"
-            placeholder="邮箱 / 手机号">
-        </label>
-      </div>
-      <div class="form-pwd">
-        <label>
-            <strong>请输入密码</strong>
-            <template v-if="passType === 'password'">
-              <input
-              v-model="password"
-              type="password"
-              name="password"
-              placeholder="密码">
-            </template>
-            <template v-if="passType === 'text'">
-              <input
-              v-model="password"
+    <template v-if="isComplete">
+      <h1 class="title">欢迎加入豆瓣</h1>
+      <form method="post" @submit.prevent="onSubmit()">
+        <p v-if="error" class="tip error">{{error}}</p>
+        <div class="form-alias">
+          <label>
+            <strong>邮箱</strong>
+            <input
+              v-model.trim="email"
               type="text"
-              name="password"
-              placeholder="密码">
-            </template>
-            <span class="showpwd" :class="{show: isShow}" @click="showpwd()"></span>
-        </label>
+              name="email"
+              placeholder="邮箱">
+          </label>
+        </div>
+        <div class="form-pwd">
+          <label>
+              <strong>请输入密码</strong>
+              <template v-if="passType === 'password'">
+                <input
+                v-model.trim="pass"
+                type="password"
+                name="pass"
+                placeholder="密码">
+              </template>
+              <template v-if="passType === 'text'">
+                <input
+                v-model.trim="pass"
+                type="text"
+                name="pass"
+                placeholder="密码">
+              </template>
+              <span class="showpwd" :class="{show: isShow}" @click="showpwd()"></span>
+          </label>
+        </div>
+        <div class="form-name">
+          <label>
+            <strong>用户名</strong>
+            <input
+              v-model.trim="name"
+              type="text"
+              name="name"
+              placeholder="用户名">
+          </label>
+        </div>
+        <div class="form-submit">
+          <button class="submit" type="submit">{{registerState}}</button>
+        </div>
+      </form>
+      <div class="footer">
+        <div class="agreement">点击「注册」代表你已阅读并同意用户使用协议</div>
+        <div class="btns">
+          <a href="#">下载豆瓣App</a>
+        </div>
       </div>
-      <div class="form-name">
-        <label>
-          <strong>昵称</strong>
-          <input
-            v-model="name"
-            type="text"
-            name="name"
-            placeholder="用户名">
-        </label>
-      </div>
-      <div class="form-submit">
-        <input class="submit" type="submit" value="立即注册">
-      </div>
-    </form>
-    <div class="footer">
-      <div class="agreement">点击「注册」代表你已阅读并同意用户使用协议</div>
-      <div class="btns">
-        <a href="#">下载豆瓣App</a>
-      </div>
-    </div>
+    </template>
+    <template v-else>
+      <h1 class="title">注册成功</h1>
+      <form method="post" onsubmit="return false">
+        <p class="tip">请复制以下Token进行登录</p>
+        <div class="form-alias">
+          <label>
+            <strong>token</strong>
+            <input
+              v-model="token"
+              type="text"
+              name="token"
+              placeholder="token">
+          </label>
+        </div>
+        <div class="form-submit">
+          <router-link class="submit" :to="{ name: 'LoginView'}" tag="button">
+            去登录
+          </router-link>
+        </div>
+      </form>
+    </template>
   </div>
 </template>
 
@@ -60,17 +84,42 @@ export default {
   name: 'register-view',
   data () {
     return {
+      isComplete: 1,
       isShow: 0,
+      registerState: '立即注册',
+      error: '',
       passType: 'password',
-      alias: '',
-      password: '',
-      name: ''
+      email: '',
+      pass: '',
+      name: '',
+      token: ''
     }
   },
   methods: {
     showpwd: function () {
       this.isShow = this.isShow ? 0 : 1
       this.isShow ? this.passType = 'text' : this.passType = 'password'
+    },
+    onSubmit: function () {
+      console.log('Submiting...')
+      this.registerState = '正在提交...'
+      this.$http.post('https://douban.herokuapp.com/user/', {
+        email: this.email,
+        pass: this.pass,
+        name: this.name
+      }).then(res => {
+        console.log('complete!')
+        this.isComplete = 0
+        this.token = res.body.token
+        console.log(this.token)
+
+        localStorage.setItem('token', res.body.token)
+        localStorage.setItem('email', res.body.email)
+        localStorage.setItem('name', res.body.name)
+      }, res => {
+        this.error = res.body.error
+        this.registerState = '立即注册'
+      })
     }
   }
 }
@@ -115,6 +164,7 @@ export default {
     }
 
     .form-pwd input, .form-name input {
+      padding-right: 4rem;
       border-top: 0;
     }
 
@@ -151,6 +201,15 @@ export default {
       background: #42bd56;
       border: 0.1rem solid #17AA52;
       border-radius: 0.3rem;
+    }
+
+    .tip {
+      font-size: 1.4rem;
+      color: #aaa;
+    }
+
+    .error {
+      color: #ff0000;
     }
   }
 
