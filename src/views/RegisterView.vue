@@ -1,6 +1,27 @@
 <template>
   <div class="register-view">
     <template v-if="isComplete">
+      <h1 class="title">注册成功</h1>
+      <form method="post" onsubmit="return false">
+        <p class="tip">请复制以下Token进行登录</p>
+        <div class="form-alias">
+          <label>
+            <strong>token</strong>
+            <input
+              v-model="token"
+              type="text"
+              name="token"
+              placeholder="token">
+          </label>
+        </div>
+        <div class="form-submit">
+          <router-link class="submit" :to="{ name: 'LoginView'}" tag="button">
+            去登录
+          </router-link>
+        </div>
+      </form>
+    </template>
+    <template v-else>
       <h1 class="title">欢迎加入豆瓣</h1>
       <form method="post" @submit.prevent="onSubmit()">
         <p v-if="error" class="tip error">{{error}}</p>
@@ -31,7 +52,7 @@
                 name="pass"
                 placeholder="密码">
               </template>
-              <span class="showpwd" :class="{show: isShow}" @click="showpwd()"></span>
+              <span class="show-pwd" :class="{show: isShow}" @click="showPwd()"></span>
           </label>
         </div>
         <div class="form-name">
@@ -45,7 +66,13 @@
           </label>
         </div>
         <div class="form-submit">
-          <button class="submit" type="submit">{{registerState}}</button>
+          <button
+            class="submit"
+            type="submit"
+            :disabled="isDisabled"
+            :class="{disabled: isDisabled}">
+            {{registerState}}
+          </button>
         </div>
       </form>
       <div class="footer">
@@ -55,27 +82,6 @@
         </div>
       </div>
     </template>
-    <template v-else>
-      <h1 class="title">注册成功</h1>
-      <form method="post" onsubmit="return false">
-        <p class="tip">请复制以下Token进行登录</p>
-        <div class="form-alias">
-          <label>
-            <strong>token</strong>
-            <input
-              v-model="token"
-              type="text"
-              name="token"
-              placeholder="token">
-          </label>
-        </div>
-        <div class="form-submit">
-          <router-link class="submit" :to="{ name: 'LoginView'}" tag="button">
-            去登录
-          </router-link>
-        </div>
-      </form>
-    </template>
   </div>
 </template>
 
@@ -84,11 +90,12 @@ export default {
   name: 'register-view',
   data () {
     return {
-      isComplete: 1,
-      isShow: 0,
+      isComplete: false,        // Registration completed
+      isDisabled: false,        // Disabled submit button
+      isShow: 0,                // Show pwd
       registerState: '立即注册',
-      error: '',
-      passType: 'password',
+      passType: 'password',     // Password input type
+      error: '',                // Verification results
       email: '',
       pass: '',
       name: '',
@@ -96,29 +103,40 @@ export default {
     }
   },
   methods: {
-    showpwd: function () {
+    showPwd: function () {
       this.isShow = this.isShow ? 0 : 1
       this.isShow ? this.passType = 'text' : this.passType = 'password'
     },
-    onSubmit: function () {
-      console.log('Submiting...')
+    beforeSubmit: function () {
+      // console.log('Submiting...')
+      this.isDisabled = true
       this.registerState = '正在提交...'
-      this.$http.post('https://douban.herokuapp.com/user/', {
+    },
+    onSuccess: function (res) {
+      // console.log('complete!')
+      this.isComplete = true
+      this.token = res.body.token
+    },
+    onError: function (err) {
+      this.error = err.body.error
+      this.registerState = '立即注册'
+      this.isDisabled = false
+    },
+    onSubmit: function () {
+      // Disabled submit button
+      this.beforeSubmit()
+      // Regist...
+      this.$store.dispatch({
+        type: 'register',
         email: this.email,
         pass: this.pass,
         name: this.name
       }).then(res => {
-        console.log('complete!')
-        this.isComplete = 0
-        this.token = res.body.token
-        console.log(this.token)
-
-        localStorage.setItem('token', res.body.token)
-        localStorage.setItem('email', res.body.email)
-        localStorage.setItem('name', res.body.name)
-      }, res => {
-        this.error = res.body.error
-        this.registerState = '立即注册'
+        // Success handle
+        this.onSuccess(res)
+      }, err => {
+        // Error handle
+        this.onError(err)
       })
     }
   }
@@ -171,7 +189,7 @@ export default {
     .form-pwd {
       position: relative;
 
-      .showpwd {
+      .show-pwd {
         position: absolute;
         right: 0.2rem;
         top: 0;
@@ -185,7 +203,7 @@ export default {
         z-index: 3;
       }
 
-      .showpwd.show {
+      .show-pwd.show {
         background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACwAAAAsCAYAAAAehFoBAAAABGdBTUEAALGPC/xhBQAABRBJREFUWAntWGlsVFUUPue+zpRFW5EE+IULv1oTqthQ0lDoLGBMXEOXKRr0B2lKAig/iEajnRA3gkaMxAWM1VrLtAVk5AdCZ2laJFGbEJPScQEJieISa5cIscu847lvcifD9L2ZN6VESeYm03u2e+7Xc88797wHkB/5COQjkI9APgL/ZQTwWjavpU5tqO9wGcShEogqAfBOAFrIM//gJqZHmB5ieog3OgsoTguBp7vXtv84031nBPi+SH1ZnGCzjvAYA12Q6+aIcAFAtDhRaznu+vTnXNbnBNgb9VXrRK8xyIpcNrGy5c3jhBjUNO1Zu1G3Bfj+cP2yCaA9BPCo1ebXJEec5PTZV4Tzdh11fcRpZD2yAl4XbmjQQT9AQPOt3cySBvGihljT7Qr0W3m0BNzY3+g4Nzb6Bh//NqvF10POgMYRxfaQO7DfzL8pYH/UX9BHsUNE9LDZIisZAp4hAYcFwQCCGImTvog3qCCEGv7Hb7NaZyYXAC+EPJ0vpeumATZKVfRQOxDUpRtb8Qz0EmnUFKnuPGZmI0/r/NjYFk6r3Qx8jpmNmUyA2BnyBF5P1U0D7A3XvasDNKUaZaIZbKzA4fCcWNP2ayY7qXP3blyJk/FuBl6UzVbpUWhPhl0HP07yipCzJ+qrIV3vSpVlohnsmBNgxXFPx3llJ0GJyan1nAZ3cFoMgEMEQ1XtPyX1PXUP8kXzueKzzbzHZQc67v3C3fa9tE1G2Htq01J94p9vORVuyeZE6fnheD7sDrwieT/5RW80tpfL01b2kfTLxBUG/jQf7QG1zhOuP8ZRfkDx2WYGfebWJSWruu7yT3BuJwaNj7+VE1gu+jDf+b5a39czuMOoKClgpY5r9zwG95432rBa2SLSPkXbmXn9PUN/fLdD2hqA10d8FSx8xM5iZcM3VH+4olX2CSAfVCLwK136zL4Fp9ouJV+wuDQKxmWhJDZmome8/Y3FBuApoJdtLEkzoYtKMNwbLOVQcrNjPQipXKaNtJBHy6nym7W1iUb2LKOjOw0HJuqcREKf4pPPPpqh2ZZdJk8JwAXac5mMzHWYvAiKqzfE+DH729wuIUXCfuTklVztWb+TiSWZ7NN1fCJ/QXHxHgNwZE371/wkHk03ysQjUbnnq02y74UurIvz+mYre9bpKMSLSj/8+6CLH1CH4m3NCLtD5ftHkymBhYVPcZRGbC1mI46QRlfGkxdMlatkLz9Ib7MPI4rKT6KsYVPIdfCUkhHhVkXbmY2ytriUS2ZKHZbM7F4ceDtfHgMFwhk8ufaTC9K/HOsivoe4xwgmuOx/GexlcMKKcFXHD9KaA3D1cEfq3+Hj2nK11JpjhzFRiN7u1YFL1lYJjSyfU6B38xncnM1W6QXiEyF3R2uSV4SaF7o2bON/o1Px2WausSX6OH3jlleuxZDNjyfi287lsycnsLL5SQEr3U+LsBQa7aUe68r1MpG5xil8hFtMo70EwkVE+krO+FpO7KXSt93BD5e99lI5vKEaeAVazp5ovQ90+ICj/b94RUqWtVSQqXTY1RHgFrKMc+ezVPms0rKvQHizCOfenel9Tu5pmsNWYORrPr82vcq/VVY2uch58+vzmp8OwtPbsJym9M0sf5xL4Iw+pPAl/aE+d05LpLL1l3T/mficIpzuSLaVw71HlpMOlRx1/lQFy7giTPtUxZXjTz7MQfmpqgC0L0+42s6l+8rz+QjkI5CPQD4CN0YE/gU2k9fnA+u+tgAAAABJRU5ErkJggg==);
       }
     }
@@ -201,6 +219,12 @@ export default {
       background: #42bd56;
       border: 0.1rem solid #17AA52;
       border-radius: 0.3rem;
+    }
+
+    .disabled {
+      cursor: not-allowed;
+      background: #eee;
+      border: none;
     }
 
     .tip {
