@@ -72,7 +72,7 @@
         </div>
       </li>
     </ul>
-    <sub-nav navBottom="ok"></sub-nav>
+    <sub-nav mold="navBottom"></sub-nav>
   </div>
 </template>
 
