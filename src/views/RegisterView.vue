@@ -139,6 +139,16 @@ export default {
         this.onError(err)
       })
     }
+  },
+  beforeRouteEnter (to, from, next) {
+    next(vm => {
+      if (vm.$store.getters.currentUser.email) {
+        // next({ path: '/' })
+        vm.$router.push({name: 'StatusView'})
+      } else {
+        next()
+      }
+    })
   }
 }
 </script>

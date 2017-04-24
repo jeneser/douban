@@ -1,7 +1,12 @@
 <template>
-  <router-link class="user-bar" :to="{ name: 'LoginView'}" tag="div">
+  <router-link class="user-bar" :to="{ name: currentLink}" tag="div">
     <div class="avatar">
-      <img src="../assets/user_normal.jpg" alt="未登陆">
+      <template v-if="currentUser.name">
+        <img src="../assets/avatar.png" alt="avatar">
+      </template>
+      <template v-else>
+        <img src="../assets/user_normal.jpg" alt="未登陆">
+      </template>
     </div>
     <div class="holder">{{holder}}</div>
     <div class="icon icon-camera"></div>
@@ -10,16 +15,31 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
+
 export default {
   name: 'user-bar',
-  props: {
-    holder: {
-      type: String,
-      required: true
+  data () {
+    return {
     }
   },
-  data () {
-    return {}
+  computed: {
+    currentLink: function () {
+      return this.currentUser.name ? 'HomeView' : 'LoginView'
+    },
+    holder: function () {
+      return this.currentUser.name ? this.currentUser.name : '请先登录'
+    },
+    // Map store/user state
+    ...mapGetters(['currentUser'])
+  },
+  created () {
+    // Get local user filling store/user
+    if (localStorage.getItem('email')) {
+      this.$store.commit({
+        type: 'getLocalUser'
+      })
+    }
   }
 }
 </script>

@@ -12,6 +12,7 @@
             v-model="email"
             type="email"
             name="email"
+            @input="updateData"
             placeholder="邮箱">
         </label>
       </div>
@@ -23,6 +24,7 @@
             v-model="token"
             type="password"
             name="token"
+            @input="updateData"
             placeholder="Token">
           </template>
           <template v-if="passType === 'text'">
@@ -30,6 +32,7 @@
             v-model="token"
             type="text"
             name="token"
+            @input="updateData"
             placeholder="Token">
           </template>
           <span class="show-pwd" :class="{show: isShow}" @click="showPwd()"></span>
@@ -86,6 +89,14 @@ export default {
       this.isShow = this.isShow ? 0 : 1
       this.isShow ? this.passType = 'text' : this.passType = 'password'
     },
+    updateData: function (e) {
+      // v-model Form handling
+      this.$store.commit({
+        type: 'updateData',
+        name: e.target.name,
+        value: e.target.value
+      })
+    },
     beforeSubmit: function () {
       // console.log('Submiting...')
       this.isDisabled = true
@@ -93,7 +104,7 @@ export default {
     },
     onSuccess: function (res) {
       // console.log('complete!')
-      this.$router.push({name: 'HomeView'})
+      this.$router.push({name: 'StatusView'})
     },
     onError: function (err) {
       // console.log(err)
@@ -118,11 +129,23 @@ export default {
       })
     }
   },
+  beforeRouteEnter (to, from, next) {
+    next(vm => {
+      if (vm.$store.getters.currentUser.email) {
+        // next({ path: '/' })
+        vm.$router.push({name: 'StatusView'})
+      } else {
+        next()
+      }
+    })
+  },
   created () {
     // Get local user automatic filling
-    this.$store.commit({
-      type: 'getLocalUser'
-    })
+    if (localStorage.getItem('email')) {
+      this.$store.commit({
+        type: 'getLocalUser'
+      })
+    }
   }
 }
 </script>

@@ -6,8 +6,33 @@ const state = {
   login_name: ''
 }
 
+const getters = {
+  currentUser: state => {
+    return {
+      email: state.login_email,
+      token: state.login_token,
+      name: state.login_name
+    }
+  }
+}
+
 const mutations = {
-  getLocalUser (state, payload) {
+  updateData (state, payload) {
+    switch (payload.name) {
+      case 'email':
+        state.login_email = payload.value
+        break
+      case 'token':
+        state.login_token = payload.value
+        break
+      case 'name':
+        state.login_name = payload.name
+        break
+      default:
+        console.log('Error:Dont directly mutate Vuex store')
+    }
+  },
+  getLocalUser (state) {
     state.login_email = localStorage.getItem('email')
     state.login_token = localStorage.getItem('token')
     state.login_name = localStorage.getItem('name')
@@ -16,6 +41,14 @@ const mutations = {
     state.login_email = payload.email
     state.login_token = payload.token
     state.login_name = payload.name
+  },
+  logout (state) {
+    localStorage.removeItem('email')
+    localStorage.removeItem('token')
+    localStorage.removeItem('name')
+    state.login_email = ''
+    state.login_token = ''
+    state.login_name = ''
   }
 }
 
@@ -66,6 +99,7 @@ const actions = {
 
 export default {
   state,
+  getters,
   mutations,
   actions
 }

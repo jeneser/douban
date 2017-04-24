@@ -1,7 +1,7 @@
 <template>
   <div class="status has-header">
     <banner></banner>
-    <user-bar holder="登录发广播"></user-bar>
+    <user-bar></user-bar>
     <div class="content-list">
       <card mold="quote" v-for="item in items" :key="item"></card>
       <a class="list-link" href="#">显示更多广播</a>
