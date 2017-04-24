@@ -33,8 +33,8 @@
 - Infinite loading list
 - Complete search logic
 - Custom components like List, Rating, Tags ...
-- Authentication with JSON Web Tokens developing
-- Complete login logic developing
+- Authentication with JSON Web Tokens
+- Complete register login logic
 ......
 
 
@@ -80,8 +80,11 @@ For detailed explanation on how things work, checkout the [guide](http://vuejs-t
  - Search books : `/book/search?q=`
  - Search movie : `/movie/search?q=`
  - Search music : `/music/search?q=`
+- User Basic URI : `https://douban.herokuapp.com/user/`
+- register
+ - method: `POST`
 - Login
- - In development
+ - method: `GET`
 
 For detailed explanation, checkout the [douban api](https://developers.douban.com/wiki/?title=api_v2)
 
@@ -109,9 +112,13 @@ For detailed explanation, checkout the [douban api](https://developers.douban.co
 ├── src
 │   ├── App.vue
 │   ├── assets
+│   │   ├── avatar.png
 │   │   ├── book_zw.jpg
+│   │   ├── camera.svg
 │   │   ├── douban-app-logo.png
-│   │   └── promotion_bg.jpg
+│   │   ├── pen.svg
+│   │   ├── promotion_bg.jpg
+│   │   └── user_normal.jpg
 │   ├── components
 │   │   ├── Banner.vue
 │   │   ├── Card.vue
@@ -124,7 +131,8 @@ For detailed explanation, checkout the [douban api](https://developers.douban.co
 │   │   ├── SubjectMark.vue
 │   │   ├── SubNav.vue
 │   │   ├── Tags.vue
-│   │   └── Types.vue
+│   │   ├── Types.vue
+│   │   └── UserBar.vue
 │   ├── main.js
 │   ├── router
 │   │   └── index.js
@@ -136,14 +144,17 @@ For detailed explanation, checkout the [douban api](https://developers.douban.co
 │   │       ├── group.js
 │   │       ├── movie.js
 │   │       ├── search.js
-│   │       └── subject.js
+│   │       ├── subject.js
+│   │       └── user.js
 │   └── views
 │       ├── BookView.vue
 │       ├── DetailView.vue
 │       ├── GroupView.vue
 │       ├── HomeView.vue
+│       ├── LoginView.vue
 │       ├── MovieView.vue
 │       ├── PagesView.vue
+│       ├── RegisterView.vue
 │       ├── SearchView.vue
 │       ├── StatusView.vue
 │       ├── SubjectView.vue
