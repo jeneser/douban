@@ -3,7 +3,10 @@ import Vue from 'vue'
 const state = {
   login_email: '',
   login_token: '',
-  login_name: ''
+  login_name: '',
+  temp_email: '',
+  temp_token: '',
+  temp_name: ''
 }
 
 const getters = {
@@ -20,13 +23,13 @@ const mutations = {
   updateData (state, payload) {
     switch (payload.name) {
       case 'email':
-        state.login_email = payload.value
+        state.temp_email = payload.value
         break
       case 'token':
-        state.login_token = payload.value
+        state.temp_token = payload.value
         break
       case 'name':
-        state.login_name = payload.name
+        state.temp_name = payload.name
         break
       default:
         console.log('Error:Dont directly mutate Vuex store')

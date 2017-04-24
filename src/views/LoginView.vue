@@ -79,9 +79,8 @@ export default {
   computed: {
     // Map store/user state
     ...mapState({
-      email: state => state.user.login_email,
-      token: state => state.user.login_token,
-      name: state => state.user.login_name
+      email: state => state.user.temp_email,
+      token: state => state.user.temp_token
     })
   },
   methods: {
