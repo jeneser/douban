@@ -64,29 +64,34 @@ For detailed explanation on how things work, checkout the [guide](http://vuejs-t
 
 ## API
 
+Douban Api V2
 - Basic URI : `https://api.douban.com/V2/`
 - Online activities
- - Activities list : `/event/list?loc=108288&count=&start=`
- - Single activitie info : `/event/id`
+  - Activities list : `/event/list?loc=108288&count=&start=`
+  - Single activitie info : `/event/id`
 - Movie
- - In theaters : `/movie/in_theaters?count=`
- - Coming soon : `/movie/coming_soon?count=`
- - Top 250 : `/movie/top250?count=`
- - Single movie info : `/movie/subject/id`
+  - In theaters : `/movie/in_theaters?count=`
+  - Coming soon : `/movie/coming_soon?count=`
+  - Top 250 : `/movie/top250?count=`
+  - Single movie info : `/movie/subject/id`
 - Book
- - Search some books : `/book/search?q=&count=`
- - Single book info : `/book/id`
+  - Search some books : `/book/search?q=&count=`
+  - Single book info : `/book/id`
 - Search
- - Search books : `/book/search?q=`
- - Search movie : `/movie/search?q=`
- - Search music : `/music/search?q=`
-- User Basic URI : `https://douban.herokuapp.com/user/`
-- register
- - method: `POST`
-- Login
- - method: `GET`
+  - Search books : `/book/search?q=`
+  - Search movie : `/movie/search?q=`
+  - Search music : `/music/search?q=`
 
-For detailed explanation, checkout the [douban api](https://developers.douban.com/wiki/?title=api_v2)
+Mock Douban Backend
+- User Basic URI : `https://douban.herokuapp.com/user/`
+- Register
+  - Path: `/user`
+  - method: `POST`
+- Login
+  - Path: `/user/:id`
+  - method: `GET`
+
+For detailed explanation, checkout the [Douban Api V2](https://developers.douban.com/wiki/?title=api_v2) and [Douban Backend](https://github.com/jeneser/douban-backend)
 
 ## File Structure
 ```
