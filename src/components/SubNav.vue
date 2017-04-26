@@ -1,5 +1,6 @@
 <template>
   <div class="sub-nav">
+    <!-- Bottom nav -->
     <div class="navBottom" v-if="mold === 'navBottom'">
       <div class="nav-item">
         <router-link :to="{name: 'RegisterView'}">注册帐号</router-link><!-- replace blank
@@ -15,7 +16,7 @@
         --><a href="#">使用豆瓣App</a>
       </div>
     </div>
-
+    <!-- Quick start nav -->
     <div class="quickNav" v-if="mold === 'quickNav'">
       <ul class="quick-nav">
         <li>
@@ -52,8 +53,7 @@ export default {
     }
   },
   data () {
-    return {
-    }
+    return {}
   },
   computed: {
     currentLink: function () {
