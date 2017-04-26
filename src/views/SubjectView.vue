@@ -31,7 +31,7 @@
           </span>
         </a>
       </div>
-      <subject-mark>
+      <marking>
         <template slot="book" v-if="subject.author">
           <router-link :to="{ name: 'LoginView'}">想读</router-link>
           <router-link :to="{ name: 'LoginView'}">在读</router-link>
@@ -41,7 +41,7 @@
           <router-link :to="{ name: 'LoginView'}">想看</router-link>
           <router-link :to="{ name: 'LoginView'}">看过</router-link>
         </template>
-      </subject-mark>
+      </marking>
       <div class="subject-intro">
         <h2>{{subject.title}}的简介</h2>
         <p>
@@ -105,7 +105,7 @@ import { mapState, mapGetters } from 'vuex'
 
 import Banner from '../components/Banner'
 import Rating from '../components/Rating'
-import subjectMark from '../components/SubjectMark'
+import Marking from '../components/Marking'
 import Card from '../components/Card'
 import List from '../components/List'
 import Scroller from '../components/Scroller'
@@ -114,7 +114,7 @@ import DownloadApp from '../components/DownloadApp'
 
 export default {
   name: 'subject-view',
-  components: { Banner, Rating, subjectMark, Card, List, Scroller, Tags, DownloadApp },
+  components: { Banner, Rating, Marking, Card, List, Scroller, Tags, DownloadApp },
   data () {
     return {
       isExpand: true,

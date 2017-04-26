@@ -1,5 +1,5 @@
 <template>
-  <div class="subject-mark">
+  <div class="marking">
     <slot name="movie"></slot>
     <slot name="book"></slot>
   </div>
@@ -7,7 +7,7 @@
 
 <script>
 export default {
-  name: 'subject-mark',
+  name: 'marking',
   data () {
     return {}
   }
@@ -15,7 +15,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.subject-mark {
+.marking {
   display: flex;
   margin: 3rem 0;
 
