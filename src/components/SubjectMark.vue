@@ -1,14 +1,13 @@
 <template>
   <div class="subject-mark">
-    <a href="javascript:;">想看</a>
-    <a href="javascript:;">看过</a>
+    <slot name="movie"></slot>
+    <slot name="book"></slot>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'subjectMark',
-  props: [],
+  name: 'subject-mark',
   data () {
     return {}
   }
