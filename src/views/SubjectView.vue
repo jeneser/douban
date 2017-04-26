@@ -78,7 +78,7 @@
       </div>
     </div>
     <div class="ad">
-      <banner isAd="true" :adImg="adImgUrl" noContent></banner>
+      <banner :adImg="adImgUrl"></banner>
     </div>
     <div class="subject-question">
       <h2>关于{{subject.title}}的问答</h2>

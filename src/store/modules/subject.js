@@ -4,7 +4,7 @@ const state = {
   bannerTitle: '聊聊你的观影感受',
   subject: {},
   classify: '',
-  adImgUrl: 'http://img.hb.aicdn.com/f50e8bf408f8e61a9dd1c658fdca088591daeab131f4c-lfGGLz_fw658',
+  adImgUrl: 'http://img.hb.aicdn.com/c1dd2a72fa6412bd455868be68ca402cf9f94b84e688-WMTPtp_fw658',
   questions: [
     {
       title: '大家为什么对国产片这么苛刻？',
