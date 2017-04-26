@@ -15,9 +15,7 @@
   export default {
     name: 'download-app',
     data () {
-      return {
-
-      }
+      return {}
     }
   }
 </script>
