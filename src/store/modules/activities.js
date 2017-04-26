@@ -4,7 +4,6 @@ const state = {
   events: [],
   temp: [],
   skip: 0,
-  bannerTitle: '每天看点好内容',
   eventItem: {}
 }
 

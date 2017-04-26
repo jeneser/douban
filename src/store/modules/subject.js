@@ -1,7 +1,6 @@
 import Vue from 'vue'
 
 const state = {
-  bannerTitle: '聊聊你的观影感受',
   subject: {},
   classify: '',
   adImgUrl: 'http://img.hb.aicdn.com/c1dd2a72fa6412bd455868be68ca402cf9f94b84e688-WMTPtp_fw658',

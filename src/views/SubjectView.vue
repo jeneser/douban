@@ -1,6 +1,6 @@
 <template>
   <div class="subject-view has-header">
-    <banner :title="bannerTitle"></banner>
+    <banner title="聊聊你的观影感受"></banner>
     <div class="subject-card">
       <h1 class="title">{{subject.title}}</h1>
       <div class="subject-info">
@@ -123,7 +123,6 @@ export default {
   },
   computed: {
     ...mapState({
-      bannerTitle: state => state.subject.bannerTitle,
       subject: state => state.subject.subject,
       adImgUrl: state => state.subject.adImgUrl,
       questions: state => state.subject.questions,

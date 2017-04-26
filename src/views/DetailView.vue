@@ -1,6 +1,6 @@
 <template>
   <div class="detail-view has-header">
-    <banner :title="bannerTitle"></banner>
+    <banner title="每天看点好内容"></banner>
     <div class="info">
       <h2>
         {{eventItem.title}}
@@ -74,7 +74,6 @@ export default {
       return this.eventItem.content.replace(/<img.+?>/ig, '')
     },
     ...mapState({
-      bannerTitle: state => state.activities.bannerTitle,
       eventItem: state => state.activities.eventItem
     })
   },
