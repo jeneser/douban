@@ -1,15 +1,20 @@
 <template>
   <div class="rating" v-if="rating">
-    <template v-for="n in full">
-      <span class="star-full"></span>
+    <template v-if="full === 0">
+      <span>暂无评分</span>
     </template>
-    <template v-for="n in half">
-      <span class="star-half"></span>
+    <template v-else>
+      <template v-for="n in full">
+        <span class="star-full"></span>
+      </template>
+      <template v-for="n in half">
+        <span class="star-half"></span>
+      </template>
+      <template v-for="n in gray">
+        <span class="star-gray"></span>
+      </template>
+      <span class="average">{{rating.average}}</span>
     </template>
-    <template v-for="n in gray">
-      <span class="star-gray"></span>
-    </template>
-    <span class="average">{{rating.average}}</span>
     <slot name="ratingsCount"></slot>
   </div>
 </template>
@@ -17,10 +22,15 @@
 <script>
 export default {
   name: 'rating',
-  props: ['rating'],
+  props: {
+    rating: {
+      type: Object,
+      required: true
+    }
+  },
   data () {
     return {
-      full: 5,
+      full: 0,
       half: 0,
       gray: 0
     }
