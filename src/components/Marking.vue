@@ -1,14 +1,13 @@
 <template>
-  <div class="subject-mark">
-    <a href="javascript:;">想看</a>
-    <a href="javascript:;">看过</a>
+  <div class="marking">
+    <slot name="movie"></slot>
+    <slot name="book"></slot>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'subjectMark',
-  props: [],
+  name: 'marking',
   data () {
     return {}
   }
@@ -16,7 +15,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.subject-mark {
+.marking {
   display: flex;
   margin: 3rem 0;
 

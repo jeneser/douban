@@ -1,18 +1,25 @@
 <template>
   <div class="banner">
-    <div class="banner-bg" v-if="!isAd">
-      <img src="../assets/promotion_bg.jpg" alt="">
-    </div>
-    <div class="banner-bg ad" v-if="isAd">
-      <img src="../assets/promotion_bg.jpg" alt="ad">
-    </div>
-    <div class="content" v-if="noContent">
-      <span class="title">{{title}}</span>
-      <div class="button-wrapper">
-        <span class="download">极速下载</span>
-        <span class="open">打开</span>
+    <!-- Ad banner -->
+    <template v-if="adImg">
+      <div class="banner-bg ad" v-if="adImg">
+        <img :src="adImg" alt="ad">
+        <span>广告</span>
       </div>
-    </div>
+    </template>
+    <!-- Universal banner -->
+    <template v-else>
+      <div class="banner-bg">
+        <img src="../assets/promotion_bg.jpg" alt="cover">
+      </div>
+      <div class="content">
+        <span class="title">{{title}}</span>
+        <div class="button-wrapper">
+          <span class="download">极速下载</span>
+          <span class="open">打开</span>
+        </div>
+      </div>
+    </template>
   </div>
 </template>
 
@@ -20,23 +27,20 @@
 export default {
   name: 'banner',
   props: {
+    // Banner title
     title: {
       type: String,
-      default: '打开App, 回复话题'
+      required: false,
+      default: '打开App, 浏览更多'
     },
-    noContent: {
-      default: true
-    },
-    isAd: {
-      default: false
-    },
+    // Ad banner
     adImg: {
-      default: ''
+      type: String,
+      required: false
     }
   },
   data () {
-    return {
-    }
+    return {}
   }
 }
 </script>
@@ -53,6 +57,18 @@ export default {
 
 .banner-bg {
   position: absolute;
+}
+
+.ad {
+  span {
+    position: absolute;
+    right: 0;
+    bottom: 0.2rem;
+    padding: 0.4rem;
+    font-size: 1.2rem;
+    color: rgb(255, 255, 255);
+    background-color: rgba(0, 0, 0, 0.3);
+  }
 }
 
 .content {

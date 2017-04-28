@@ -4,7 +4,9 @@
     <div class="content">
       <ul class="type-list">
         <li v-for="item in items">
-          <a :href="baseUri + item.href">{{item.title}}<span></span></a>
+          <a :href="baseUri + item.href">
+            {{item.title}}<span></span>
+          </a>
         </li>
         <li></li>
       </ul>
