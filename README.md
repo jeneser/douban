@@ -133,7 +133,7 @@ For detailed explanation, checkout the [Douban Api V2](https://developers.douban
 │   │   ├── List.vue
 │   │   ├── Rating.vue
 │   │   ├── Scroller.vue
-│   │   ├── SubjectMark.vue
+│   │   ├── Marking.vue
 │   │   ├── SubNav.vue
 │   │   ├── Tags.vue
 │   │   ├── Types.vue
