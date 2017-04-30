@@ -1,102 +1,105 @@
 <template>
   <div class="subject-view has-header">
     <banner title="聊聊你的观影感受"></banner>
-    <div class="subject-card">
-      <h1 class="title">{{subject.title}}</h1>
-      <div class="subject-info">
-        <div class="right">
-          <a href="#">
-            <img v-if="subject.images" :src="subject.images.large" alt="cover">
+    <template v-if="!showLoading">
+      <div class="subject-card">
+        <h1 class="title">{{subject.title}}</h1>
+        <div class="subject-info">
+          <div class="right">
+            <a href="#">
+              <img v-if="subject.images" :src="subject.images.large" alt="cover">
+            </a>
+          </div>
+          <div class="left" v-if="subject.rating">
+            <rating :rating="subject.rating">
+              <span slot="ratingsCount">{{subject.ratings_count}}人评价</span>
+            </rating>
+            <template v-if="subject.genres && subjectMeta">
+              <p class="meta">{{subjectMeta}}</p>
+              <a href="#" class="open-app">用App查看影人资料</a>
+            </template>
+            <template v-if="subject.author && subjectMeta">
+              <p class="meta">{{subjectMeta}}</p>
+              <a href="#" class="buy">在豆瓣购买</a>
+            </template>
+          </div>
+        </div>
+        <div v-if="subject.author" class="vendors-link">
+          <a class="link">
+            在哪儿买这本书？
+            <span class="info">
+              豆瓣阅读电子书 66.00元起
+            </span>
           </a>
         </div>
-        <div class="left" v-if="subject.rating">
-          <rating :rating="subject.rating">
-            <span slot="ratingsCount">{{subject.ratings_count}}人评价</span>
-          </rating>
-          <template v-if="subject.genres && subjectMeta">
-            <p class="meta">{{subjectMeta}}</p>
-            <a href="#" class="open-app">用App查看影人资料</a>
+        <marking>
+          <template slot="book" v-if="subject.author">
+            <router-link :to="{ name: 'LoginView'}">想读</router-link>
+            <router-link :to="{ name: 'LoginView'}">在读</router-link>
+            <router-link :to="{ name: 'LoginView'}">读过</router-link>
           </template>
-          <template v-if="subject.author && subjectMeta">
-            <p class="meta">{{subjectMeta}}</p>
-            <a href="#" class="buy">在豆瓣购买</a>
+          <template slot="movie" v-else>
+            <router-link :to="{ name: 'LoginView'}">想看</router-link>
+            <router-link :to="{ name: 'LoginView'}">看过</router-link>
+          </template>
+        </marking>
+        <div class="subject-intro">
+          <h2>{{subject.title}}的简介</h2>
+          <p>
+            <template v-if="summary && subject.summary">
+              {{isExpand ? summary : subject.summary}}……
+            </template>
+            <a href="javascript:;" v-show="isExpand" v-on:click="expand">
+              (展开)
+            </a>
+          </p>
+        </div>
+        <div class="genres">
+          <h2>查看更多相关分类</h2>
+          <template v-if="genres">
+            <tags :items="genres"></tags>
           </template>
         </div>
+        <div class="subject-pics">
+          <h2>{{subject.title}}的图片</h2>
+          <ul v-if="subject.images">
+            <li class="pic">
+              <a href="#">
+                <img :src="subject.images.large" alt="poster">
+              </a>
+            </li>
+            <li class="pic">
+              <a href="#">
+                <img :src="subject.images.large" alt="poster">
+              </a>
+            </li>
+            <li class="pic">
+              <a href="#">
+                <img :src="subject.images.large" alt="poster">
+              </a>
+            </li>
+          </ul>
+        </div>
       </div>
-      <div v-if="subject.author" class="vendors-link">
-        <a class="link">
-          在哪儿买这本书？
-          <span class="info">
-            豆瓣阅读电子书 66.00元起
-          </span>
-        </a>
+      <div class="subject-comments">
+        <h2>{{subject.title}}的短评</h2>
+        <div class="content-list">
+          <card mold="comment" v-for="item in items" :key="item"></card>
+          <a class="list-link" href="javascript:;">显示更多评论</a>
+        </div>
       </div>
-      <marking>
-        <template slot="book" v-if="subject.author">
-          <router-link :to="{ name: 'LoginView'}">想读</router-link>
-          <router-link :to="{ name: 'LoginView'}">在读</router-link>
-          <router-link :to="{ name: 'LoginView'}">读过</router-link>
-        </template>
-        <template slot="movie" v-else>
-          <router-link :to="{ name: 'LoginView'}">想看</router-link>
-          <router-link :to="{ name: 'LoginView'}">看过</router-link>
-        </template>
-      </marking>
-      <div class="subject-intro">
-        <h2>{{subject.title}}的简介</h2>
-        <p>
-          <template v-if="summary && subject.summary">
-            {{isExpand ? summary : subject.summary}}……
-          </template>
-          <a href="javascript:;" v-show="isExpand" v-on:click="expand">
-            (展开)
-          </a>
-        </p>
+      <div class="ad">
+        <banner :adImg="adImgUrl"></banner>
       </div>
-      <div class="genres">
-        <h2>查看更多相关分类</h2>
-        <template v-if="genres">
-          <tags :items="genres"></tags>
-        </template>
+      <div class="subject-question">
+        <h2>关于{{subject.title}}的问答</h2>
+        <list :items="questions"></list>
+        <a class="list-link" href="javascript:;">显示更多问答</a>
       </div>
-      <div class="subject-pics">
-        <h2>{{subject.title}}的图片</h2>
-        <ul v-if="subject.images">
-          <li class="pic">
-            <a href="#">
-              <img :src="subject.images.large" alt="poster">
-            </a>
-          </li>
-          <li class="pic">
-            <a href="#">
-              <img :src="subject.images.large" alt="poster">
-            </a>
-          </li>
-          <li class="pic">
-            <a href="#">
-              <img :src="subject.images.large" alt="poster">
-            </a>
-          </li>
-        </ul>
-      </div>
-    </div>
-    <div class="subject-comments">
-      <h2>{{subject.title}}的短评</h2>
-      <div class="content-list">
-        <card mold="comment" v-for="item in items" :key="item"></card>
-        <a class="list-link" href="javascript:;">显示更多评论</a>
-      </div>
-    </div>
-    <div class="ad">
-      <banner :adImg="adImgUrl"></banner>
-    </div>
-    <div class="subject-question">
-      <h2>关于{{subject.title}}的问答</h2>
-      <list :items="questions"></list>
-      <a class="list-link" href="javascript:;">显示更多问答</a>
-    </div>
-    <scroller title="推荐的豆列" type="onlyString" :items="movieTags"></scroller>
-    <download-app></download-app>
+      <scroller title="推荐的豆列" type="onlyString" :items="movieTags"></scroller>
+      <download-app></download-app>
+    </template>
+    <loading v-show="showLoading"></loading>
   </div>
 </template>
 
@@ -111,12 +114,24 @@ import List from '../components/List'
 import Scroller from '../components/Scroller'
 import Tags from '../components/Tags'
 import DownloadApp from '../components/DownloadApp'
+import Loading from '../components/Loading'
 
 export default {
   name: 'subject-view',
-  components: { Banner, Rating, Marking, Card, List, Scroller, Tags, DownloadApp },
+  components: {
+    Banner,
+    Rating,
+    Marking,
+    Card,
+    List,
+    Scroller,
+    Tags,
+    DownloadApp,
+    Loading
+  },
   data () {
     return {
+      showLoading: true,
       isExpand: true,
       items: new Array(5)
     }
@@ -147,6 +162,9 @@ export default {
       type: 'getSingleSubject',
       id: id,
       classify: classify
+    }).then(res => {
+      // Success handle
+      this.showLoading = false
     })
   }
 }

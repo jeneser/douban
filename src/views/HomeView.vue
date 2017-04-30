@@ -2,7 +2,9 @@
   <div class="home-view has-header">
     <sub-nav mold="quickNav"></sub-nav>
     <list mold="thumbnail" :items="events"></list>
-    <infinite-loading :on-infinite="onInfinite" ref="infiniteLoading"></infinite-loading>
+    <infinite-loading :on-infinite="onInfinite" ref="infiniteLoading">
+      <loading slot="spinner"></loading>
+    </infinite-loading>
   </div>
 </template>
 
@@ -12,10 +14,11 @@ import { mapState, mapActions } from 'vuex'
 import InfiniteLoading from 'vue-infinite-loading'
 import SubNav from '../components/SubNav'
 import List from '../components/List'
+import Loading from '../components/Loading'
 
 export default {
   name: 'home-view',
-  components: { SubNav, List, InfiniteLoading },
+  components: { SubNav, List, InfiniteLoading, Loading },
   data () {
     return {}
   },

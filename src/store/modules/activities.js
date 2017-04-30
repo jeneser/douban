@@ -41,13 +41,16 @@ const actions = {
             })
   },
   getSingleEvent ({commit, state}, payload) {
-    Vue.http.jsonp('https://api.douban.com/v2/event/' + payload.id)
-            .then(res => {
-              commit({
-                type: 'getSingleEvent',
-                res: res.body
+    return new Promise((resolve, reject) => {
+      Vue.http.jsonp('https://api.douban.com/v2/event/' + payload.id)
+              .then(res => {
+                commit({
+                  type: 'getSingleEvent',
+                  res: res.body
+                })
+                resolve(res)
               })
-            })
+    })
   }
 }
 

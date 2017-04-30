@@ -1,52 +1,55 @@
 <template>
   <div class="detail-view has-header">
     <banner title="每天看点好内容"></banner>
-    <div class="info">
-      <h2>
-        {{eventItem.title}}
-        <span class="badge">{{eventItem.loc_name}}</span>
-      </h2>
-      <div class="poster">
-        <img :src="eventItem.image_hlarge" alt="">
+    <template v-if="!showLoading">
+      <div class="info">
+        <h2>
+          {{eventItem.title}}
+          <span class="badge">{{eventItem.loc_name}}</span>
+        </h2>
+        <div class="poster">
+          <img :src="eventItem.image_hlarge" alt="">
+        </div>
+        <div class="detail">
+          <span>时间:&nbsp;&nbsp;</span>
+          <ul>
+            <li>{{eventItem.begin_time}}</li>
+            <li>{{eventItem.end_time}}</li>
+          </ul>
+        </div>
+        <div class="detail">
+          <span>地点:&nbsp;&nbsp;</span>
+          <ul>
+            <li>{{eventItem.address}}</li>
+          </ul>
+        </div>
+        <div class="detail">
+          <span>费用:&nbsp;&nbsp;</span>
+          <ul>
+            <li>{{eventItem.fee_str}}</li>
+          </ul>
+        </div>
+        <div class="detail">
+          <span>类型:&nbsp;&nbsp;</span>
+          <ul>
+            <li>{{eventItem.category_name}}</li>
+          </ul>
+        </div>
+        <div class="detail">
+          <span>起始时间:&nbsp;&nbsp;</span>
+          <ul>
+            <li v-if="eventItem.owner">{{eventItem.owner.name}}</li>
+          </ul>
+        </div>
+        <tags v-if="eventItem.tags" :items="eventItem.tags | toArray"></tags>
+        <div class="describe">
+          <h2>活动详情</h2>
+          <div v-if="eventItem.content" class="content" v-html="content"></div>
+        </div>
       </div>
-      <div class="detail">
-        <span>时间:&nbsp;&nbsp;</span>
-        <ul>
-          <li>{{eventItem.begin_time}}</li>
-          <li>{{eventItem.end_time}}</li>
-        </ul>
-      </div>
-      <div class="detail">
-        <span>地点:&nbsp;&nbsp;</span>
-        <ul>
-          <li>{{eventItem.address}}</li>
-        </ul>
-      </div>
-      <div class="detail">
-        <span>费用:&nbsp;&nbsp;</span>
-        <ul>
-          <li>{{eventItem.fee_str}}</li>
-        </ul>
-      </div>
-      <div class="detail">
-        <span>类型:&nbsp;&nbsp;</span>
-        <ul>
-          <li>{{eventItem.category_name}}</li>
-        </ul>
-      </div>
-      <div class="detail">
-        <span>起始时间:&nbsp;&nbsp;</span>
-        <ul>
-          <li v-if="eventItem.owner">{{eventItem.owner.name}}</li>
-        </ul>
-      </div>
-      <tags v-if="eventItem.tags" :items="eventItem.tags | toArray"></tags>
-      <div class="describe">
-        <h2>活动详情</h2>
-        <div v-if="eventItem.content" class="content" v-html="content"></div>
-      </div>
-    </div>
-    <download-app></download-app>
+      <download-app></download-app>
+    </template>
+    <loading v-show="showLoading"></loading>
   </div>
 </template>
 
@@ -55,12 +58,15 @@ import { mapState } from 'vuex'
 import Banner from '../components/Banner'
 import Tags from '../components/Tags'
 import DownloadApp from '../components/DownloadApp'
+import Loading from '../components/Loading'
 
 export default {
   name: 'detail-view',
-  components: { Banner, Tags, DownloadApp },
+  components: { Banner, Tags, DownloadApp, Loading },
   data () {
-    return {}
+    return {
+      showLoading: true
+    }
   },
   filters: {
     toArray (value) {
@@ -77,11 +83,14 @@ export default {
       eventItem: state => state.activities.eventItem
     })
   },
-  beforeMount () {
+  created () {
     const id = this.$route.params.id
     this.$store.dispatch({
       type: 'getSingleEvent',
       id: id
+    }).then(res => {
+      // Success handle
+      this.showLoading = false
     })
   }
 }

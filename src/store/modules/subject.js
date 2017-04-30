@@ -63,32 +63,36 @@ const mutations = {
 
 const actions = {
   getSingleSubject ({commit}, payload) {
-    switch (payload.classify) {
-      case 'movie':
-        Vue.http.jsonp('https://api.douban.com/v2/' + payload.classify +
-               '/subject/' + payload.id)
-                .then(res => {
-                  commit({
-                    type: 'getSingleSubject',
-                    classify: payload.classify,
-                    res: res.body
+    return new Promise((resolve, reject) => {
+      switch (payload.classify) {
+        case 'movie':
+          Vue.http.jsonp('https://api.douban.com/v2/' + payload.classify +
+                 '/subject/' + payload.id)
+                  .then(res => {
+                    commit({
+                      type: 'getSingleSubject',
+                      classify: payload.classify,
+                      res: res.body
+                    })
+                    resolve(res)
                   })
-                })
-        break
-      case 'book':
-        Vue.http.jsonp('https://api.douban.com/v2/' + payload.classify +
-               '/' + payload.id)
-                .then(res => {
-                  commit({
-                    type: 'getSingleSubject',
-                    classify: payload.classify,
-                    res: res.body
+          break
+        case 'book':
+          Vue.http.jsonp('https://api.douban.com/v2/' + payload.classify +
+                 '/' + payload.id)
+                  .then(res => {
+                    commit({
+                      type: 'getSingleSubject',
+                      classify: payload.classify,
+                      res: res.body
+                    })
+                    resolve(res)
                   })
-                })
-        break
-      default:
-        console.log('[Error]:Api is error!')
-    }
+          break
+        default:
+          console.log('[Error]:Api is error!')
+      }
+    })
   }
 }
 
