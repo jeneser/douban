@@ -7,7 +7,7 @@
           name="query"
           v-model.trim.lazy="queryStr"
           placeholder="搜索 书 / 影 / 音 / 标签">
-        <a href="javascript:void(0);" :click="query()">搜索</a>
+        <a href="javascript:void(0);" @click="query()">搜索</a>
       </form>
     </div>
     <div v-if="queryStr" class="search-res">
