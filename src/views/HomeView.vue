@@ -23,20 +23,22 @@ export default {
     return {}
   },
   computed: {
+    // Getting Vuex State from store/modules/activities
     ...mapState({
       events: state => state.activities.events
     })
   },
   methods: {
+    // Using vue-infinite-loading
     onInfinite () {
       setTimeout(() => {
         this.loadMore()
         this.$refs.infiniteLoading.$emit('$InfiniteLoading:loaded')
       }, 1000)
     },
+    // Dispatching Actions
     ...mapActions([
-      'loadMore',
-      'getEvent'
+      'loadMore'
     ])
   }
 }

@@ -1,4 +1,5 @@
-import Vue from 'vue'
+import request from 'superagent'
+import jsonp from 'superagent-jsonp'
 
 const state = {
   subject: {},
@@ -25,6 +26,7 @@ const state = {
 }
 
 const getters = {
+  // Filtering subjectMeta
   subjectMeta: state => {
     if (state.classify === 'movie') {
       return state.subject.year + '/' +
@@ -40,11 +42,13 @@ const getters = {
              state.subject.price + ' / ' + state.subject.pubdate
     }
   },
+  // Filtering summary
   summary: state => {
     if (state.subject.summary) {
       return state.subject.summary.slice(0, 120)
     }
   },
+  // Filtering genres
   genres: state => {
     if (state.classify === 'book') {
       return state.subject.tags
@@ -62,32 +66,45 @@ const mutations = {
 }
 
 const actions = {
+  /**
+   * Getting single subject
+   * new Promise((resolve, reject) => {})
+   * classify: movie, book
+   */
   getSingleSubject ({commit}, payload) {
     return new Promise((resolve, reject) => {
       switch (payload.classify) {
         case 'movie':
-          Vue.http.jsonp('https://api.douban.com/v2/' + payload.classify +
-                 '/subject/' + payload.id)
-                  .then(res => {
-                    commit({
-                      type: 'getSingleSubject',
-                      classify: payload.classify,
-                      res: res.body
-                    })
-                    resolve(res)
-                  })
+          request
+            .get('https://api.douban.com/v2/' + payload.classify +
+              '/subject/' + payload.id)
+            .use(jsonp)
+            .end((err, res) => {
+              if (!err) {
+                commit({
+                  type: 'getSingleSubject',
+                  classify: payload.classify,
+                  res: res.body
+                })
+                resolve(res)
+              }
+            })
           break
         case 'book':
-          Vue.http.jsonp('https://api.douban.com/v2/' + payload.classify +
-                 '/' + payload.id)
-                  .then(res => {
-                    commit({
-                      type: 'getSingleSubject',
-                      classify: payload.classify,
-                      res: res.body
-                    })
-                    resolve(res)
-                  })
+          request
+            .get('https://api.douban.com/v2/' + payload.classify +
+              '/' + payload.id)
+            .use(jsonp)
+            .end((err, res) => {
+              if (!err) {
+                commit({
+                  type: 'getSingleSubject',
+                  classify: payload.classify,
+                  res: res.body
+                })
+                resolve(res)
+              }
+            })
           break
         default:
           console.log('[Error]:Api is error!')

@@ -1,4 +1,5 @@
-import Vue from 'vue'
+import request from 'superagent'
+import jsonp from 'superagent-jsonp'
 
 const state = {
   hotMovies: [],
@@ -70,31 +71,48 @@ const mutations = {
 }
 
 const actions = {
+  /**
+   * Getting movies
+   * q: in_theaters, coming_soon, top250
+   * count: 8
+   */
   getMovie ({ commit }) {
-    Vue.http.jsonp('https://api.douban.com/v2/movie/in_theaters?count=8')
-            .then(res => {
-              commit({
-                type: 'getMovie',
-                tag: 'hotMovies',
-                res: res.body.subjects
-              })
-            })
-    Vue.http.jsonp('https://api.douban.com/v2/movie/coming_soon?count=8')
-            .then(res => {
-              commit({
-                type: 'getMovie',
-                tag: 'newMovies',
-                res: res.body.subjects
-              })
-            })
-    Vue.http.jsonp('https://api.douban.com/v2/movie/top250?count=8')
-            .then(res => {
-              commit({
-                type: 'getMovie',
-                tag: 'topMovies',
-                res: res.body.subjects
-              })
-            })
+    request
+      .get('https://api.douban.com/v2/movie/in_theaters?count=8')
+      .use(jsonp)
+      .end((err, res) => {
+        if (!err) {
+          commit({
+            type: 'getMovie',
+            tag: 'hotMovies',
+            res: res.body.subjects
+          })
+        }
+      })
+    request
+      .get('https://api.douban.com/v2/movie/coming_soon?count=8')
+      .use(jsonp)
+      .end((err, res) => {
+        if (!err) {
+          commit({
+            type: 'getMovie',
+            tag: 'newMovies',
+            res: res.body.subjects
+          })
+        }
+      })
+    request
+      .get('https://api.douban.com/v2/movie/top250?count=8')
+      .use(jsonp)
+      .end((err, res) => {
+        if (!err) {
+          commit({
+            type: 'getMovie',
+            tag: 'topMovies',
+            res: res.body.subjects
+          })
+        }
+      })
   }
 }
 

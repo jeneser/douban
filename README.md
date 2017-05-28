@@ -1,6 +1,6 @@
 # Douban
 
-> Awesome douban DEMO created with Vue2.x + Vuex + Vue-router + vue-resource
+> Awesome douban DEMO created with Vue2.x + Vuex + Vue-router + Superagent
 
 ## Preview
 
@@ -18,7 +18,7 @@
 
 ## Features
 
-- Vue + vue-router + vuex + vue-resource working together
+- Vue + vue-router + vuex + Superagent working together
 - Vuex divide store into modules
 - Modern JavaScript syntax with ES6
 - vue-cli webpack template
@@ -58,7 +58,8 @@ For detailed explanation on how things work, checkout the [guide](http://vuejs-t
 
 - [Vuex](https://vuex.vuejs.org) : Centralized State Management for Vue.js
 - [Vue-router](http://router.vuejs.org/) : The official router for Vue.js
-- [vue-resource](https://github.com/pagekit/vue-resource) : The HTTP client for Vue.js
+- ~~[vue-resource](https://github.com/pagekit/vue-resource) : The HTTP client for Vue.js~~
+- [Superagent](https://github.com/visionmedia/superagent) : Ajax with less suck - (and node.js HTTP client to match)
 - [vue-infinite-loading](https://github.com/PeachScript/vue-infinite-loading) : An infinite scroll plugin for Vue.js 1.0 & Vue.js 2.0.
 - [normalize.css](https://github.com/necolas/normalize.css) :  A collection of HTML element and attribute style-normalizations
 

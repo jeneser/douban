@@ -1,4 +1,5 @@
-import Vue from 'vue'
+import request from 'superagent'
+import jsonp from 'superagent-jsonp'
 
 const state = {
   queryRes_movie: [],
@@ -25,35 +26,60 @@ const mutations = {
 }
 
 const actions = {
+  /**
+   * Search
+   * queryStr: String
+   * count: 3 default
+   */
   query ({ commit }, payload) {
-    Vue.http.jsonp('https://api.douban.com/v2/movie/search?q=' +
-                   payload.queryStr + '&count=3')
-            .then(res => {
-              commit({
-                type: 'query',
-                tag: 'movie',
-                res: res.body.subjects
-              })
-            })
-    // API rate limit exceeded
-    // Vue.http.jsonp('https://api.douban.com/v2/book/search?q=' +
-    //                payload.queryStr + '&count=3')
-    //         .then(res => {
-    //           commit({
-    //             type: 'query',
-    //             tag: 'book',
-    //             res: res.body
-    //           })
-    //         })
-    // Vue.http.jsonp('https://api.douban.com/v2/music/search?q=' +
-    //                payload.queryStr + '&count=3')
-    //         .then(res => {
-    //           commit({
-    //             type: 'query',
-    //             tag: 'music',
-    //             res: res.body.musics
-    //           })
-    //         })
+    request
+      .get('https://api.douban.com/v2/movie/search?q=' +
+        payload.queryStr + '&count=3')
+      .use(jsonp)
+      .end((err, res) => {
+        if (!err) {
+          commit({
+            type: 'query',
+            tag: 'movie',
+            res: res.body.subjects
+          })
+        }
+      })
+
+    /**
+     * API rate limit exceeded
+     * Learn more: https://developers.douban.com/wiki/?title=api_v2
+     */
+
+    // Getting book
+    // request
+    //   .get('https://api.douban.com/v2/book/search?q=' +
+    //     payload.queryStr + '&count=3')
+    //   .use(jsonp)
+    //   .end((err, res) => {
+    //     if (!err) {
+    //       commit({
+    //         type: 'query',
+    //         tag: 'book',
+    //         res: res.body
+    //       })
+    //     }
+    //   })
+
+    // Getting music
+    // request
+    //   .get('https://api.douban.com/v2/music/search?q=' +
+    //     payload.queryStr + '&count=3')
+    //   .use(jsonp)
+    //   .end((err, res) => {
+    //     if (!err) {
+    //       commit({
+    //         type: 'query',
+    //         tag: 'music',
+    //         res: res.body.musics
+    //       })
+    //     }
+    //   })
   }
 }
 
