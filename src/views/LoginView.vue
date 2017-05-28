@@ -77,7 +77,7 @@ export default {
     }
   },
   computed: {
-    // Map store/user state
+    // Getting Vuex State from store/modules/user
     ...mapState({
       email: state => state.user.temp_email,
       token: state => state.user.temp_token
@@ -139,7 +139,7 @@ export default {
     })
   },
   created () {
-    // Get local user automatic filling
+    // Getting local user automatic filling
     if (localStorage.getItem('email')) {
       this.$store.commit({
         type: 'getLocalUser'

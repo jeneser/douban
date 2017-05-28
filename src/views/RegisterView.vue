@@ -140,6 +140,7 @@ export default {
       })
     }
   },
+  // Checkout current user
   beforeRouteEnter (to, from, next) {
     next(vm => {
       if (vm.$store.getters.currentUser.email) {

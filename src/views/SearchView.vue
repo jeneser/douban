@@ -38,6 +38,7 @@ export default {
     }
   },
   computed: {
+    // Getting Vuex State from store/modules/search
     ...mapState({
       queryRes_movie: state => state.search.queryRes_movie
       // API rate limit exceeded
@@ -48,6 +49,7 @@ export default {
   methods: {
     query: function () {
       if (this.queryStr) {
+        // Dispatching query
         this.$store.dispatch({
           type: 'query',
           queryStr: this.queryStr
@@ -58,8 +60,9 @@ export default {
   created: function () {
     const q = this.$route.params.q
     if (q) {
-      console.log(q)
+      // console.log(q)
       this.queryStr = q
+      this.query()
     }
   }
 }

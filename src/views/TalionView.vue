@@ -91,6 +91,10 @@ export default {
     closeTalion: function () {
       this.$emit('closeTalion')
     },
+    /**
+     * Going to search view
+     * params: q
+     */
     goSearch: function () {
       this.$emit('closeTalion')
       this.$router.push({

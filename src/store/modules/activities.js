@@ -1,4 +1,5 @@
-import Vue from 'vue'
+import request from 'superagent'
+import jsonp from 'superagent-jsonp'
 
 const state = {
   events: [],
@@ -8,11 +9,8 @@ const state = {
 }
 
 const mutations = {
-  getEvent (state, payload) {
-    state.events = payload.res
-  },
   loadMore (state, payload) {
-    state.skip += 2
+    state.skip += 3
     state.events = state.events.concat(payload.res)
   },
   getSingleEvent (state, payload) {
@@ -21,35 +19,43 @@ const mutations = {
 }
 
 const actions = {
-  getEvent ({commit}) {
-    Vue.http.jsonp('https://api.douban.com/v2/event/list?loc=108288&count=5')
-            .then(res => {
-              commit({
-                type: 'getEvent',
-                res: res.body.events
-              })
-            })
-  },
+  /**
+   * Loading more data
+   * skip: 3 default
+   * count: 3 default
+   */
   loadMore ({commit, state}) {
-    Vue.http.jsonp('https://api.douban.com/v2/event/list?loc=108288&start=' +
-                      state.skip + '&count=5')
-            .then(res => {
-              commit({
-                type: 'loadMore',
-                res: res.body.events
-              })
-            })
+    request
+      .get('https://api.douban.com/v2/event/list?loc=108288&start=' +
+        state.skip + '&count=3')
+      .use(jsonp)
+      .end((err, res) => {
+        if (!err) {
+          commit({
+            type: 'loadMore',
+            res: res.body.events
+          })
+        }
+      })
   },
+  /**
+   * Getting single event
+   * id: event id
+   */
   getSingleEvent ({commit, state}, payload) {
     return new Promise((resolve, reject) => {
-      Vue.http.jsonp('https://api.douban.com/v2/event/' + payload.id)
-              .then(res => {
-                commit({
-                  type: 'getSingleEvent',
-                  res: res.body
-                })
-                resolve(res)
-              })
+      request
+        .get('https://api.douban.com/v2/event/' + payload.id)
+        .use(jsonp)
+        .end((err, res) => {
+          if (!err) {
+            commit({
+              type: 'getSingleEvent',
+              res: res.body
+            })
+            resolve(res)
+          }
+        })
     })
   }
 }

@@ -1,4 +1,5 @@
-import Vue from 'vue'
+import request from 'superagent'
+import jsonp from 'superagent-jsonp'
 
 const state = {
   novel: [],
@@ -60,31 +61,48 @@ const mutations = {
 }
 
 const actions = {
+  /**
+   * Getting books
+   * q: 虚构类, 非虚构类, 旅行
+   * count: 8
+   */
   getBook ({ commit }) {
-    Vue.http.jsonp('https://api.douban.com/v2/book/search?q=虚构类&count=8')
-            .then(res => {
-              commit({
-                type: 'getBook',
-                tag: 'novel',
-                res: res.body.books
-              })
-            })
-    Vue.http.jsonp('https://api.douban.com/v2/book/search?q=非虚构类&count=8')
-            .then(res => {
-              commit({
-                type: 'getBook',
-                tag: 'reality',
-                res: res.body.books
-              })
-            })
-    Vue.http.jsonp('https://api.douban.com/v2/book/search?q=旅行&count=8')
-            .then(res => {
-              commit({
-                type: 'getBook',
-                tag: 'travel',
-                res: res.body.books
-              })
-            })
+    request
+      .get('https://api.douban.com/v2/book/search?q=虚构类&count=8')
+      .use(jsonp)
+      .end((err, res) => {
+        if (!err) {
+          commit({
+            type: 'getBook',
+            tag: 'novel',
+            res: res.body.books
+          })
+        }
+      })
+    request
+      .get('https://api.douban.com/v2/book/search?q=非虚构类&count=8')
+      .use(jsonp)
+      .end((err, res) => {
+        if (!err) {
+          commit({
+            type: 'getBook',
+            tag: 'reality',
+            res: res.body.books
+          })
+        }
+      })
+    request
+      .get('https://api.douban.com/v2/book/search?q=旅行&count=8')
+      .use(jsonp)
+      .end((err, res) => {
+        if (!err) {
+          commit({
+            type: 'getBook',
+            tag: 'travel',
+            res: res.body.books
+          })
+        }
+      })
   }
 }
 

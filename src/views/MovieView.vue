@@ -23,6 +23,7 @@ export default {
     return {}
   },
   computed: {
+    // Getting Vuex State from store/modules/movie
     ...mapState({
       hotMovies: state => state.movie.hotMovies,
       topMovies: state => state.movie.topMovies,
@@ -31,11 +32,13 @@ export default {
     })
   },
   methods: {
+    // Dispatching getMovie
     getMovie: function () {
       this.$store.dispatch('getMovie')
     }
   },
   created () {
+    // Getting movies data on created
     this.getMovie()
   }
 }
