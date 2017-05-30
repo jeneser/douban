@@ -1,15 +1,22 @@
-# Douban
+<p align="center">
+	<img src="https://raw.githubusercontent.com/jeneser/jeneser.github.io/master/assets/images/douban/douban_logo.png">
+</p>
 
-> Awesome douban DEMO created with Vue2.x + Vuex + Vue-router + Superagent
+<p align="center">
+
+**Awesome douban DEMO created with Vue2.x + Vuex + Vue-router + Superagent**
+[![Build Status](https://travis-ci.org/jeneser/douban.svg?branch=master)](https://travis-ci.org/jeneser/douban) [![David](https://img.shields.io/david/expressjs/express.svg?style=flat-square)](https://github.com/jeneser/douban) [![Codacy Badge](https://api.codacy.com/project/badge/Grade/aa2dd7f4191546258edf6e55464d1962)](https://www.codacy.com/app/jeneser/douban?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=jeneser/douban&amp;utm_campaign=Badge_Grade) [![Percentage of issues still open](http://isitmaintained.com/badge/open/jeneser/douban.svg)](http://isitmaintained.com/project/jeneser/douban "Percentage of issues still open") [![Average time to resolve an issue](http://isitmaintained.com/badge/resolution/jeneser/douban.svg)](http://isitmaintained.com/project/jeneser/douban "Average time to resolve an issue") [![PR](https://img.shields.io/badge/PR-welcome-brightgreen.svg)](https://github.com/jeneser/douban/pulls) [![license](https://img.shields.io/badge/license-MIT-brightgreen.svg)](https://github.com/jeneser/douban/blob/master/LICENSE)
+
+</p>
 
 ## Preview
 
 <p align="center">
-    <img src="https://raw.githubusercontent.com/jeneser/jeneser.github.io/master/assets/images/douban/douban_home.png" >
-    <img src="https://raw.githubusercontent.com/jeneser/jeneser.github.io/master/assets/images/douban/douban_movie.png" >
+    <img src="https://raw.githubusercontent.com/jeneser/jeneser.github.io/master/assets/images/douban/douban_home.gif" >
+    <img src="https://raw.githubusercontent.com/jeneser/jeneser.github.io/master/assets/images/douban/douban_movie.gif" >
     <br>
-     <img src="https://raw.githubusercontent.com/jeneser/jeneser.github.io/master/assets/images/douban/douban_detial.png" >
-    <img src="https://raw.githubusercontent.com/jeneser/jeneser.github.io/master/assets/images/douban/douban_search.png" >
+     <img src="https://raw.githubusercontent.com/jeneser/jeneser.github.io/master/assets/images/douban/douban_login.gif" >
+    <img src="https://raw.githubusercontent.com/jeneser/jeneser.github.io/master/assets/images/douban/douban_search.gif" >
     <br><br>
     <strong>......</strong>
     <br>
