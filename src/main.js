@@ -4,7 +4,11 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 import store from './store'
+import vueScrollBehavior from 'vue-scroll-behavior'
 import 'normalize.css'
+
+Vue.use(vueScrollBehavior)
+Vue.vueScrollBehavior(router)
 
 /* eslint-disable no-new */
 new Vue({
