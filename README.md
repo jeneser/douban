@@ -73,6 +73,7 @@ For detailed explanation on how things work, checkout the [guide](http://vuejs-t
 - [Superagent](https://github.com/visionmedia/superagent) : Ajax with less suck - (and node.js HTTP client to match)
 - [vue-infinite-loading](https://github.com/PeachScript/vue-infinite-loading) : An infinite scroll plugin for Vue.js 1.0 & Vue.js 2.0.
 - [normalize.css](https://github.com/necolas/normalize.css) :  A collection of HTML element and attribute style-normalizations
+- [vue-scroll-behavior](https://www.npmjs.com/package/vue-scroll-behavior) :  Completely customize the scroll behavior on route navigation
 
 ## API
 
