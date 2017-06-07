@@ -7,8 +7,7 @@ import store from './store'
 import vueScrollBehavior from 'vue-scroll-behavior'
 import 'normalize.css'
 
-Vue.use(vueScrollBehavior)
-Vue.vueScrollBehavior(router)
+Vue.use(vueScrollBehavior, { router: router })
 
 /* eslint-disable no-new */
 new Vue({
