@@ -183,6 +183,8 @@ For detailed explanation, checkout the [Douban Api V2](https://developers.douban
 
 ## Change log
 
+- June 24, 2017:
+  - Update vue-scroll-behavior fix scroll behavior
 - May 28, 2017:
   - Using superagent
 
