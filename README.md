@@ -1,5 +1,5 @@
 <p align="center">
-	<img src="https://raw.githubusercontent.com/jeneser/jeneser.github.io/master/assets/images/douban/douban_logo.png">
+	<img src="./screenshot/douban_logo.png">
 </p>
 
 <br>
@@ -16,11 +16,11 @@ Awesome douban DEMO created with Vue2.x + Vuex + Vue-router + Superagent
 <br>
 
 <p align="center">
-    <img src="https://raw.githubusercontent.com/jeneser/jeneser.github.io/master/assets/images/douban/douban_home.gif" >
-    <img src="https://raw.githubusercontent.com/jeneser/jeneser.github.io/master/assets/images/douban/douban_movie.gif" >
+    <img src="./screenshot/douban_home.gif" >
+    <img src="./screenshot/douban_movie.gif" >
     <br>
-     <img src="https://raw.githubusercontent.com/jeneser/jeneser.github.io/master/assets/images/douban/douban_login.gif" >
-    <img src="https://raw.githubusercontent.com/jeneser/jeneser.github.io/master/assets/images/douban/douban_search.gif" >
+     <img src="./screenshot/douban_login.gif" >
+    <img src="./screenshot/douban_search.gif" >
     <br><br>
     <strong>......</strong>
     <br>
@@ -183,6 +183,9 @@ For detailed explanation, checkout the [Douban Api V2](https://developers.douban
 
 ## Change log
 
+- Aug 11, 2017:
+  - Add dir /screenshot.
+  - Update README fix screenshot
 - June 24, 2017:
   - Update vue-scroll-behavior fix scroll behavior
 - May 28, 2017:
