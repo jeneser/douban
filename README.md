@@ -183,6 +183,9 @@ For detailed explanation, checkout the [Douban Api V2](https://developers.douban
 
 ## Change log
 
+- Aug 24, 2017:
+  - Merged PR #19
+  - Remove dist/, use tschaub/gh-pages
 - Aug 11, 2017:
   - Add dir /screenshot.
   - Update README fix screenshot
@@ -191,6 +194,18 @@ For detailed explanation, checkout the [Douban Api V2](https://developers.douban
 - May 28, 2017:
   - Using superagent
 
+## Contributing
+
+1. Fork it!
+2. Create your feature branch: `git checkout -b my-new-feature`
+3. Commit your changes: `git commit -am 'Add some feature'`
+4. Push to the branch: `git push origin my-new-feature`
+5. Submit a pull request
+
+## Thanks
+
+<a href="https://github.com/LIANGWEIBIAO" target="_blank"><img src="https://avatars2.githubusercontent.com/u/24608984?v=4&s=460" width="38px"></a> <a href="https://github.com/lizhanjie1314" target="_blank"><img src="https://avatars1.githubusercontent.com/u/15324887?v=4&s=460" width="38px"></a> <a href="https://github.com/fredshare" target="_blank"><img src="https://avatars3.githubusercontent.com/u/765082?v=4&s=460" width="38px"></a> <a href="https://github.com/Werb" target="_blank"><img src="https://avatars1.githubusercontent.com/u/12763277?v=4&s=460" width="38px"></a> <a href="https://github.com/jfliapp" target="_blank"><img src="https://avatars2.githubusercontent.com/u/27725921?v=4&s=460" width="38px"></a> <a href="https://github.com/bluestrings" target="_blank"><img src="https://avatars2.githubusercontent.com/u/6144152?v=4&s=460" width="38px"></a> <a href="https://github.com/silverpeng" target="_blank"><img src="https://avatars2.githubusercontent.com/u/25680922?v=4&s=460" width="38px"></a> <a href="https://github.com/KngZhi" target="_blank"><img src="https://avatars1.githubusercontent.com/u/11361147?v=4&s=460" width="38px"></a>
+
 ## License
 
-[MIT](https://github.com/jeneser/douban/blob/master/LICENSE) Copyright (c) 2017 Jeneser
+[MIT](https://github.com/jeneser/douban/blob/master/LICENSE) Copyright (c) 2017 [Jeneser](https://jeneser.github.io/)
